@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mbanji Family — Njangi System</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1F45;
+    --navy-mid: #1a3066;
+    --navy-light: #2a4a8a;
+    --gold: #C8A84B;
+    --gold-light: #e8c96a;
+    --gold-pale: #faeeda;
+    --gold-dark: #8B6914;
+    --cream: #F9F4E8;
+    --cream-dark: #EDE4CC;
+    --text: #1a1a2e;
+    --text-mid: #4a4a6a;
+    --text-light: #8a8aaa;
+    --surface: #ffffff;
+    --surface-2: #F5F3EE;
+    --border: rgba(15,31,69,0.1);
+    --border-strong: rgba(15,31,69,0.2);
+    --success: #1a7a4a;
+    --success-bg: #e8f5ee;
+    --danger: #9b1a1a;
+    --danger-bg: #fce8e8;
+    --info-bg: #e8edf8;
+    --info: #1a3a8a;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --shadow: 0 2px 12px rgba(15,31,69,0.08);
+    --shadow-lg: 0 8px 32px rgba(15,31,69,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--navy);
+    padding: 0 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 64px;
+  }
+  .crest {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 600;
+    color: var(--navy);
+    flex-shrink: 0;
+    letter-spacing: 1px;
+  }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.5px;
+  }
+  .header-sub {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .header-right {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Nav ── */
+  .nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 66px;
+    z-index: 99;
+    box-shadow: var(--shadow);
+  }
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+  }
+  .nav-btn {
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-mid);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover { color: var(--navy); background: var(--surface-2); }
+  .nav-btn.active {
+    color: var(--navy);
+    border-bottom-color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ── Main layout ── */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* ── Metric cards ── */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .metric {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 1.1rem 1rem;
+    text-align: center;
+  }
+  .metric-label {
+    font-size: 11px;
+    color: rgba(200,168,75,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+  }
+  .metric-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .metric-unit {
+    font-size: 11px;
+    color: rgba(200,168,75,0.6);
+    margin-top: 2px;
+  }
+
+  /* ── Form elements ── */
+  .field { margin-bottom: 1rem; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-mid);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  input[type=text], input[type=number], input[type=date], select, textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--surface);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(200,168,75,0.15);
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230F1F45' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* ── Buttons ── */
+  .btn {
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn:hover { background: var(--surface-2); }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--gold);
+    border-color: var(--navy);
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--navy-mid); }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+    font-weight: 500;
+  }
+  .btn-gold:hover { background: var(--gold-light); }
+  .btn-danger {
+    background: var(--danger-bg);
+    color: var(--danger);
+    border-color: rgba(155,26,26,0.2);
+  }
+  .btn-sm { padding: 6px 12px; font-size: 12px; }
+  .btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 1.25rem; }
+
+  /* ── Badges ── */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .badge-gold { background: var(--gold-pale); color: var(--gold-dark); }
+  .badge-green { background: var(--success-bg); color: var(--success); }
+  .badge-red { background: var(--danger-bg); color: var(--danger); }
+  .badge-gray { background: var(--surface-2); color: var(--text-light); }
+  .badge-blue { background: var(--info-bg); color: var(--info); }
+  .badge-navy { background: var(--navy); color: var(--gold); }
+
+  /* ── Info box ── */
+  .info-box {
+    background: var(--info-bg);
+    border-left: 3px solid var(--navy-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--info);
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Rows ── */
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .row:last-child { border-bottom: none; }
+  .row-actions { display: flex; gap: 8px; align-items: center; margin-left: auto; flex-shrink: 0; }
+
+  /* ── Avatar ── */
+  .avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .avatar-sm {
+    width: 32px; height: 32px;
+    font-size: 12px;
+  }
+
+  /* ── Slot number ── */
+  .slot-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 12px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .slot-num.open {
+    background: var(--surface-2);
+    color: var(--text-light);
+    border: 1px dashed var(--border-strong);
+  }
+  .slot-num.current {
+    background: var(--gold);
+    color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(200,168,75,0.25);
+  }
+
+  /* ── Progress bar ── */
+  .progress-wrap { margin-top: 10px; }
+  .progress-bar {
+    height: 6px;
+    background: var(--surface-2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 6px;
+  }
+
+  /* ── Empty state ── */
+  .empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-light);
+  }
+  .empty-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    opacity: 0.4;
+  }
+  .empty p { font-size: 14px; }
+
+  /* ── Toast ── */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--navy);
+    color: var(--gold);
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 999;
+    border: 1px solid var(--gold);
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light);
+    margin: 1.25rem 0 0.75rem;
+  }
+
+  /* ── Confirm dialog ── */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,31,69,0.5);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .overlay.show { display: flex; }
+  .dialog {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+  }
+  .dialog h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .dialog p { font-size: 14px; color: var(--text-mid); margin-bottom: 1.5rem; }
+  .dialog-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .metric { padding: 0.8rem 0.5rem; }
+    .metric-val { font-size: 20px; }
+    .main { padding: 1.25rem 1rem; }
+    .nav-btn { padding: 12px 12px; font-size: 12px; }
+    .header-title { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <div class="crest">MF</div>
+    <div>
+      <div class="header-title">Mbanji Family</div>
+      <div class="header-sub">Njangi System</div>
+    </div>
+    <div class="header-right" id="cycleLabel">Cycle 1 · 2025</div>
+  </div>
+</header>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showPage('signup',this)">Sign up</button>
+    <button class="nav-btn" onclick="showPage('rotation',this)">Rotation</button>
+    <button class="nav-btn" onclick="showPage('members',this)">Members</button>
+    <button class="nav-btn" onclick="showPage('payments',this)">Payments</button>
+    <button class="nav-btn" onclick="showPage('admin',this)">Admin</button>
+  </div>
+</nav>
+
+<main class="main">
+
+  <!-- ── SIGN UP PAGE ── -->
+  <div id="page-signup" class="page active">
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Signed up</div>
+        <div class="metric-val" id="m-signed">0</div>
+        <div class="metric-unit">members</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Open slots</div>
+        <div class="metric-val" id="m-slots">12</div>
+        <div class="metric-unit">remaining</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Weekly pot</div>
+        <div class="metric-val" id="m-pot">0</div>
+        <div class="metric-unit">FCFA</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      Each member contributes <strong>1,000 FCFA</strong> every Sunday via mobile money. The week's beneficiary also contributes <strong>1,000 FCFA</strong> to the trouble bank upon receiving the pot.
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Join the njangi</div>
+        <span class="badge badge-gold" id="prog-badge">0 / 12</span>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label>Full name</label>
+          <input type="text" id="inp-name" placeholder="e.g. Marie Mbanji">
+        </div>
+        <div class="field">
+          <label>Phone (mobile money)</label>
+          <input type="text" id="inp-phone" placeholder="e.g. 677 123 456">
+        </div>
+        <div class="field">
+          <label>Mobile money network</label>
+          <select id="inp-network">
+            <option value="">Select network</option>
+            <option>MTN MoMo</option>
+            <option>Orange Money</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preferred slot (optional)</label>
+          <select id="inp-slot">
+            <option value="">No preference — assign randomly</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="signUp()">Confirm sign-up</button>
+        <button class="btn" onclick="clearForm()">Clear</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Registration progress</div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+        <div class="progress-labels">
+          <span id="prog-left">Slots available</span>
+          <span id="prog-pct">0%</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── ROTATION PAGE ── -->
+  <div id="page-rotation" class="page">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Weekly rotation order</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-sm" onclick="shuffleRotation()">Shuffle</button>
+          <button class="btn btn-primary btn-sm" onclick="drawRotation()">Draw rotation</button>
+        </div>
+      </div>
+      <div id="rotation-list"></div>
+    </div>
+  </div>
+
+  <!-- ── MEMBERS PAGE ── -->
+  <div id="page-members" class="page">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Registered members</div>
+        <span class="badge badge-navy" id="members-count">0 members</span>
+      </div>
+      <div id="members-list"></div>
+    </div>
+  </div>
+
+  <!-- ── PAYMENTS PAGE ── -->
+  <div id="page-payments" class="page">
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Current week</div>
+        <div class="metric-val" id="pay-week">1</div>
+        <div class="metric-unit">of cycle</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Paid this week</div>
+        <div class="metric-val" id="pay-paid">0</div>
+        <div class="metric-unit">members</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Trouble bank</div>
+        <div class="metric-val" id="pay-tb">0</div>
+        <div class="metric-unit">FCFA</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">This week's beneficiary</div>
+      </div>
+      <div id="beneficiary-card"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Payment status</div>
+        <button class="btn btn-sm" onclick="markAllPaid()">Mark all paid</button>
+      </div>
+      <div id="payment-list"></div>
+    </div>
+
+  </div>
+
+  <!-- ── ADMIN PAGE ── -->
+  <div id="page-admin" class="page">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Cycle settings</div>
+      </div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Contribution amount (FCFA)</label>
+          <input type="number" id="cfg-amount" value="1000" min="100" step="100">
+        </div>
+        <div class="field">
+          <label>Number of slots</label>
+          <input type="number" id="cfg-slots" value="12" min="2" max="52">
+        </div>
+        <div class="field">
+          <label>Cycle start date</label>
+          <input type="date" id="cfg-start">
+        </div>
+        <div class="field">
+          <label>Cycle name / label</label>
+          <input type="text" id="cfg-label" placeholder="e.g. Cycle 1 · 2025">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="applySettings()">Save settings</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Trouble bank</div>
+      </div>
+      <div class="metrics" style="margin-bottom:1rem">
+        <div class="metric">
+          <div class="metric-label">Balance</div>
+          <div class="metric-val" id="tb-balance">0</div>
+          <div class="metric-unit">FCFA</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Contributions</div>
+          <div class="metric-val" id="tb-count">0</div>
+          <div class="metric-unit">recorded</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Next expected</div>
+          <div class="metric-val" id="tb-next">1,000</div>
+          <div class="metric-unit">FCFA</div>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top:0">
+        <button class="btn btn-gold" onclick="recordTB()">Record trouble bank payment (+1,000 FCFA)</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Data management</div>
+      </div>
+      <p style="font-size:13px;color:var(--text-mid);margin-bottom:1rem">Export a backup of all data or reset the cycle for a new rotation.</p>
+      <div class="btn-row">
+        <button class="btn" onclick="exportData()">Export data (JSON)</button>
+        <button class="btn btn-danger" onclick="confirmReset()">Reset all data</button>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Confirm dialog -->
+<div class="overlay" id="overlay">
+  <div class="dialog">
+    <h3 id="dlg-title">Confirm action</h3>
+    <p id="dlg-msg">Are you sure?</p>
+    <div class="dialog-actions">
+      <button class="btn" onclick="closeDialog()">Cancel</button>
+      <button class="btn btn-danger" id="dlg-confirm">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULT = {
+  maxSlots: 12, amount: 1000, members: [], rotation: [],
+  rotationDrawn: false, tbBalance: 0, tbCount: 0,
+  cycleStart: new Date().toISOString().split('T')[0],
+  cycleLabel: 'Cycle 1 · ' + new Date().getFullYear()
+};
+
+let S = JSON.parse(JSON.stringify(DEFAULT));
+
+function save() {
+  try { localStorage.setItem('mbanji_njangi_v2', JSON.stringify(S)); } catch(e) {}
+}
+function load() {
+  try {
+    const d = localStorage.getItem('mbanji_njangi_v2');
+    if (d) S = { ...DEFAULT, ...JSON.parse(d) };
+  } catch(e) {}
+}
+
+/* ── Toast ── */
+let toastTimer;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ── Navigation ── */
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  render();
+}
+
+/* ── Helpers ── */
+function initials(name) {
+  return name.trim().split(/\s+/).map(w => w[0] || '').join('').toUpperCase().slice(0, 2) || '?';
+}
+function fmt(n) { return Math.round(n).toLocaleString(); }
+function currentWeek() {
+  if (!S.cycleStart) return 1;
+  const diff = Math.floor((Date.now() - new Date(S.cycleStart)) / (7 * 86400000));
+  return Math.max(1, Math.min(diff + 1, S.maxSlots));
+}
+
+/* ── Slot dropdown ── */
+function refreshSlotDropdown() {
+  const sel = document.getElementById('inp-slot');
+  const taken = S.members.map(m => m.slot).filter(Boolean);
+  sel.innerHTML = '<option value="">No preference — assign randomly</option>';
+  for (let i = 1; i <= S.maxSlots; i++) {
+    if (!taken.includes(i)) {
+      const o = document.createElement('option');
+      o.value = i; o.textContent = 'Week ' + i;
+      sel.appendChild(o);
+    }
+  }
+}
+
+/* ── Sign up ── */
+function signUp() {
+  const name    = document.getElementById('inp-name').value.trim();
+  const phone   = document.getElementById('inp-phone').value.trim();
+  const network = document.getElementById('inp-network').value;
+  const slotStr = document.getElementById('inp-slot').value;
+
+  if (!name)    { toast('Please enter your full name'); return; }
+  if (!phone)   { toast('Please enter your phone number'); return; }
+  if (!network) { toast('Please select your mobile money network'); return; }
+  if (S.members.length >= S.maxSlots) { toast('All slots are filled!'); return; }
+  if (S.members.find(m => m.name.toLowerCase() === name.toLowerCase())) {
+    toast('This member is already registered'); return;
+  }
+
+  let slot = slotStr ? parseInt(slotStr) : null;
+  if (slot && S.members.find(m => m.slot === slot)) {
+    toast('That slot is already taken. Please choose another.'); return;
+  }
+  if (!slot) {
+    const taken = S.members.map(m => m.slot).filter(Boolean);
+    const avail = [];
+    for (let i = 1; i <= S.maxSlots; i++) if (!taken.includes(i)) avail.push(i);
+    slot = avail.length ? avail[Math.floor(Math.random() * avail.length)] : null;
+  }
+
+  S.members.push({
+    name, phone, network, slot,
+    paid: [], joinedAt: new Date().toLocaleDateString('en-GB')
+  });
+  S.rotationDrawn = false;
+  save(); clearForm(); render();
+  toast(name + ' registered successfully!');
+}
+
+function clearForm() {
+  ['inp-name','inp-phone'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('inp-network').value = '';
+  document.getElementById('inp-slot').value = '';
+}
+
+/* ── Remove member ── */
+function removeMember(i) {
+  showConfirm(
+    'Remove member',
+    'Remove ' + S.members[i].name + ' from the njangi? This cannot be undone.',
+    () => {
+      S.members.splice(i, 1);
+      S.rotation = []; S.rotationDrawn = false;
+      save(); render(); toast('Member removed');
+    }
+  );
+}
+
+/* ── Draw rotation ── */
+function drawRotation() {
+  if (S.members.length < 2) { toast('Need at least 2 members to draw'); return; }
+  const withSlot = [...S.members].filter(m => m.slot).sort((a,b) => a.slot - b.slot);
+  const noSlot   = shuffle([...S.members].filter(m => !m.slot));
+  const order = [];
+  const noSlotCopy = [...noSlot];
+  for (let i = 1; i <= S.maxSlots; i++) {
+    const pref = withSlot.find(m => m.slot === i);
+    if (pref) order.push(pref.name);
+    else if (noSlotCopy.length) order.push(noSlotCopy.shift().name);
+    else order.push(null);
+  }
+  S.rotation = order; S.rotationDrawn = true;
+  save(); render(); toast('Rotation drawn successfully!');
+}
+
+function shuffleRotation() {
+  if (!S.rotationDrawn) { toast('Draw rotation first'); return; }
+  S.rotation = shuffle([...S.rotation]);
+  save(); render(); toast('Rotation shuffled!');
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/* ── Mark paid ── */
+function markPaid(idx) {
+  const week = currentWeek();
+  const m = S.members[idx];
+  if (!m.paid) m.paid = [];
+  if (m.paid.includes(week)) { toast(m.name + ' already marked paid for week ' + week); return; }
+  m.paid.push(week);
+  save(); render(); toast('Payment recorded for ' + m.name);
+}
+
+function markAllPaid() {
+  const week = currentWeek();
+  S.members.forEach(m => {
+    if (!m.paid) m.paid = [];
+    if (!m.paid.includes(week)) m.paid.push(week);
+  });
+  save(); render(); toast('All members marked paid for week ' + week);
+}
+
+/* ── Trouble bank ── */
+function recordTB() {
+  S.tbBalance += S.amount; S.tbCount++;
+  save(); render(); toast('Trouble bank: +' + fmt(S.amount) + ' FCFA recorded');
+}
+
+/* ── Settings ── */
+function applySettings() {
+  S.amount     = parseInt(document.getElementById('cfg-amount').value) || 1000;
+  S.maxSlots   = parseInt(document.getElementById('cfg-slots').value)  || 12;
+  S.cycleStart = document.getElementById('cfg-start').value  || S.cycleStart;
+  S.cycleLabel = document.getElementById('cfg-label').value  || S.cycleLabel;
+  save(); render(); toast('Settings saved');
+}
+
+/* ── Export ── */
+function exportData() {
+  const blob = new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'mbanji-njangi-' + new Date().toISOString().split('T')[0] + '.json';
+  a.click();
+  toast('Data exported');
+}
+
+/* ── Reset ── */
+function confirmReset() {
+  showConfirm(
+    'Reset all data',
+    'This will permanently delete all members, payments, and rotation data. This cannot be undone.',
+    () => {
+      S = JSON.parse(JSON.stringify(DEFAULT));
+      S.cycleStart = new Date().toISOString().split('T')[0];
+      save(); render(); toast('All data has been reset');
+    }
+  );
+}
+
+/* ── Dialog ── */
+function showConfirm(title, msg, onConfirm) {
+  document.getElementById('dlg-title').textContent = title;
+  document.getElementById('dlg-msg').textContent   = msg;
+  document.getElementById('dlg-confirm').onclick   = () => { closeDialog(); onConfirm(); };
+  document.getElementById('overlay').classList.add('show');
+}
+function closeDialog() {
+  document.getElementById('overlay').classList.remove('show');
+}
+
+/* ── Render ── */
+function render() {
+  const n    = S.members.length;
+  const week = currentWeek();
+  const pot  = n * S.amount;
+  const pct  = S.maxSlots > 0 ? Math.round((n / S.maxSlots) * 100) : 0;
+
+  /* header */
+  document.getElementById('cycleLabel').textContent = S.cycleLabel || ('Cycle 1 · ' + new Date().getFullYear());
+
+  /* signup metrics */
+  document.getElementById('m-signed').textContent = n;
+  document.getElementById('m-slots').textContent  = Math.max(0, S.maxSlots - n);
+  document.getElementById('m-pot').textContent    = fmt(pot);
+  document.getElementById('prog-badge').textContent = n + ' / ' + S.maxSlots;
+  document.getElementById('prog-fill').style.width  = pct + '%';
+  document.getElementById('prog-left').textContent  = n >= S.maxSlots ? 'All slots filled — ready to draw!' : (S.maxSlots - n) + ' slot(s) remaining';
+  document.getElementById('prog-pct').textContent   = pct + '%';
+
+  refreshSlotDropdown();
+
+  /* rotation */
+  const rl = document.getElementById('rotation-list');
+  if (!S.rotationDrawn || !S.rotation.length) {
+    rl.innerHTML = n > 0
+      ? `<div class="info-box">${n} member${n!==1?'s':''} registered. Click "Draw rotation" to assign weekly order.</div><div class="empty"><div class="empty-icon">↻</div><p>Rotation not yet drawn.</p></div>`
+      : `<div class="empty"><div class="empty-icon">👥</div><p>No members signed up yet.</p></div>`;
+  } else {
+    rl.innerHTML = S.rotation.map((name, i) => {
+      const wk = i + 1;
+      const isCur  = wk === week;
+      const isPast = wk < week;
+      const mi     = S.members.findIndex(m => m.name === name);
+      const paid   = mi >= 0 && S.members[mi].paid && S.members[mi].paid.includes(wk);
+      let badge = '';
+      if (!name)         badge = '<span class="badge badge-gray">Open</span>';
+      else if (isCur)    badge = '<span class="badge badge-gold">Current beneficiary</span>';
+      else if (isPast && paid)  badge = '<span class="badge badge-green">Completed</span>';
+      else if (isPast && !paid) badge = '<span class="badge badge-red">Missed</span>';
+      else               badge = '<span class="badge badge-gray">Upcoming</span>';
+      const numClass = !name ? 'open' : isCur ? 'current' : '';
+      return `<div class="row">
+        <div class="slot-num ${numClass}">${wk}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:500;font-size:14px">${name || 'Open slot'}</div>
+          <div style="font-size:12px;color:var(--text-light)">Pot: ${name ? fmt(n * S.amount) + ' FCFA' : '—'}</div>
+        </div>
+        <div>${badge}</div>
+      </div>`;
+    }).join('');
+  }
+
+  /* members */
+  document.getElementById('members-count').textContent = n + ' member' + (n !== 1 ? 's' : '');
+  const ml = document.getElementById('members-list');
+  ml.innerHTML = !n
+    ? '<div class="empty"><p>No members yet.</p></div>'
+    : S.members.map((m, i) => `
+        <div class="row">
+          <div class="avatar avatar-sm">${initials(m.name)}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:500;font-size:14px">${m.name}</div>
+            <div style="font-size:12px;color:var(--text-light)">${m.network} · ${m.phone} · joined ${m.joinedAt}</div>
+          </div>
+          <div class="row-actions">
+            ${m.slot ? '<span class="badge badge-blue">Week ' + m.slot + '</span>' : '<span class="badge badge-gray">No slot</span>'}
+            <button class="btn btn-danger btn-sm" onclick="removeMember(${i})">Remove</button>
+          </div>
+        </div>`).join('');
+
+  /* payments */
+  const paidCount = S.members.filter(m => m.paid && m.paid.includes(week)).length;
+  document.getElementById('pay-week').textContent  = week;
+  document.getElementById('pay-paid').textContent  = paidCount;
+  document.getElementById('pay-tb').textContent    = fmt(S.tbBalance);
+
+  const benName = S.rotation[week - 1] || null;
+  const benEl   = document.getElementById('beneficiary-card');
+  if (!S.rotationDrawn || !benName) {
+    benEl.innerHTML = '<div class="empty"><p>Rotation not drawn yet.</p></div>';
+  } else {
+    const bm = S.members.find(m => m.name === benName);
+    const tbPaid = S.members.findIndex(m => m.name === benName);
+    benEl.innerHTML = `
+      <div class="row" style="border:none;padding:0">
+        <div class="avatar">${initials(benName)}</div>
+        <div style="flex:1">
+          <div style="font-weight:500;font-size:15px">${benName}</div>
+          <div style="font-size:13px;color:var(--text-light)">${bm ? bm.network + ' · ' + bm.phone : ''}</div>
+        </div>
+        <div>
+          <div style="font-size:13px;color:var(--text-mid);margin-bottom:4px">Receives</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--navy)">${fmt(n * S.amount)} FCFA</div>
+        </div>
+      </div>
+      <hr class="divider">
+      <div style="font-size:13px;color:var(--text-mid)">This member must contribute <strong>1,000 FCFA</strong> to the trouble bank upon receiving the pot.</div>`;
+  }
+
+  const pl = document.getElementById('payment-list');
+  pl.innerHTML = !n
+    ? '<div class="empty"><p>No members yet.</p></div>'
+    : S.members.map((m, i) => {
+        const paid = m.paid && m.paid.includes(week);
+        return `<div class="row">
+          <div class="avatar avatar-sm">${initials(m.name)}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:500;font-size:14px">${m.name}</div>
+            <div style="font-size:12px;color:var(--text-light)">Week ${week} · ${fmt(S.amount)} FCFA</div>
+          </div>
+          <div class="row-actions">
+            ${paid ? '<span class="badge badge-green">Paid</span>' : '<span class="badge badge-red">Pending</span>'}
+            ${!paid ? `<button class="btn btn-sm" onclick="markPaid(${i})">Mark paid</button>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+
+  /* admin */
+  document.getElementById('cfg-amount').value  = S.amount;
+  document.getElementById('cfg-slots').value   = S.maxSlots;
+  document.getElementById('cfg-start').value   = S.cycleStart;
+  document.getElementById('cfg-label').value   = S.cycleLabel;
+  document.getElementById('tb-balance').textContent = fmt(S.tbBalance);
+  document.getElementById('tb-count').textContent   = S.tbCount;
+  document.getElementById('tb-next').textContent    = fmt(S.amount);
+}
+
+load();
+render();
+</script>
+</body>
+</html>
