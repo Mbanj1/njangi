@@ -3,1065 +3,1027 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mbanji Family — Njangi System</title>
+<title>Mbanji Family — Family Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #0F1F45;
-    --navy-mid: #1a3066;
-    --navy-light: #2a4a8a;
-    --gold: #C8A84B;
-    --gold-light: #e8c96a;
-    --gold-pale: #faeeda;
-    --gold-dark: #8B6914;
-    --cream: #F9F4E8;
-    --cream-dark: #EDE4CC;
-    --text: #1a1a2e;
-    --text-mid: #4a4a6a;
-    --text-light: #8a8aaa;
-    --surface: #ffffff;
-    --surface-2: #F5F3EE;
-    --border: rgba(15,31,69,0.1);
-    --border-strong: rgba(15,31,69,0.2);
-    --success: #1a7a4a;
-    --success-bg: #e8f5ee;
-    --danger: #9b1a1a;
-    --danger-bg: #fce8e8;
-    --info-bg: #e8edf8;
-    --info: #1a3a8a;
-    --radius: 10px;
-    --radius-lg: 16px;
-    --shadow: 0 2px 12px rgba(15,31,69,0.08);
-    --shadow-lg: 0 8px 32px rgba(15,31,69,0.14);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
-  /* ── Header ── */
-  .header {
-    background: var(--navy);
-    padding: 0 1.5rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 2px solid var(--gold);
-  }
-  .header-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    height: 64px;
-  }
-  .crest {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px; font-weight: 600;
-    color: var(--navy);
-    flex-shrink: 0;
-    letter-spacing: 1px;
-  }
-  .header-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px; font-weight: 600;
-    color: var(--cream);
-    letter-spacing: 0.5px;
-  }
-  .header-sub {
-    font-size: 11px;
-    color: var(--gold);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .header-right {
-    margin-left: auto;
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 0.5px;
-  }
-
-  /* ── Nav ── */
-  .nav {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 66px;
-    z-index: 99;
-    box-shadow: var(--shadow);
-  }
-  .nav-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    gap: 0;
-  }
-  .nav-btn {
-    padding: 14px 20px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--text-mid);
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .nav-btn:hover { color: var(--navy); background: var(--surface-2); }
-  .nav-btn.active {
-    color: var(--navy);
-    border-bottom-color: var(--gold);
-    font-weight: 500;
-  }
-
-  /* ── Main layout ── */
-  .main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-
-  .page { display: none; }
-  .page.active { display: block; }
-
-  /* ── Cards ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    margin-bottom: 1.25rem;
-    box-shadow: var(--shadow);
-  }
-  .card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.25rem;
-  }
-  .card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--navy);
-  }
-
-  /* ── Metric cards ── */
-  .metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 1.5rem;
-  }
-  .metric {
-    background: var(--navy);
-    border-radius: var(--radius);
-    padding: 1.1rem 1rem;
-    text-align: center;
-  }
-  .metric-label {
-    font-size: 11px;
-    color: rgba(200,168,75,0.7);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-bottom: 6px;
-  }
-  .metric-val {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 600;
-    color: var(--gold);
-  }
-  .metric-unit {
-    font-size: 11px;
-    color: rgba(200,168,75,0.6);
-    margin-top: 2px;
-  }
-
-  /* ── Form elements ── */
-  .field { margin-bottom: 1rem; }
-  .field label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-mid);
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  input[type=text], input[type=number], input[type=date], select, textarea {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    background: var(--surface);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-  input:focus, select:focus {
-    outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(200,168,75,0.15);
-  }
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230F1F45' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 36px;
-  }
-
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-  /* ── Buttons ── */
-  .btn {
-    padding: 10px 20px;
-    border-radius: var(--radius);
-    border: 1px solid var(--border-strong);
-    background: transparent;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.18s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .btn:hover { background: var(--surface-2); }
-  .btn:active { transform: scale(0.98); }
-  .btn-primary {
-    background: var(--navy);
-    color: var(--gold);
-    border-color: var(--navy);
-    font-weight: 500;
-  }
-  .btn-primary:hover { background: var(--navy-mid); }
-  .btn-gold {
-    background: var(--gold);
-    color: var(--navy);
-    border-color: var(--gold);
-    font-weight: 500;
-  }
-  .btn-gold:hover { background: var(--gold-light); }
-  .btn-danger {
-    background: var(--danger-bg);
-    color: var(--danger);
-    border-color: rgba(155,26,26,0.2);
-  }
-  .btn-sm { padding: 6px 12px; font-size: 12px; }
-  .btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 1.25rem; }
-
-  /* ── Badges ── */
-  .badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-  }
-  .badge-gold { background: var(--gold-pale); color: var(--gold-dark); }
-  .badge-green { background: var(--success-bg); color: var(--success); }
-  .badge-red { background: var(--danger-bg); color: var(--danger); }
-  .badge-gray { background: var(--surface-2); color: var(--text-light); }
-  .badge-blue { background: var(--info-bg); color: var(--info); }
-  .badge-navy { background: var(--navy); color: var(--gold); }
-
-  /* ── Info box ── */
-  .info-box {
-    background: var(--info-bg);
-    border-left: 3px solid var(--navy-light);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--info);
-    margin-bottom: 1.25rem;
-  }
-
-  /* ── Rows ── */
-  .row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 13px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .row:last-child { border-bottom: none; }
-  .row-actions { display: flex; gap: 8px; align-items: center; margin-left: auto; flex-shrink: 0; }
-
-  /* ── Avatar ── */
-  .avatar {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: var(--navy);
-    color: var(--gold);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
-    font-weight: 600;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .avatar-sm {
-    width: 32px; height: 32px;
-    font-size: 12px;
-  }
-
-  /* ── Slot number ── */
-  .slot-num {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: var(--navy);
-    color: var(--gold);
-    font-size: 12px; font-weight: 500;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .slot-num.open {
-    background: var(--surface-2);
-    color: var(--text-light);
-    border: 1px dashed var(--border-strong);
-  }
-  .slot-num.current {
-    background: var(--gold);
-    color: var(--navy);
-    box-shadow: 0 0 0 3px rgba(200,168,75,0.25);
-  }
-
-  /* ── Progress bar ── */
-  .progress-wrap { margin-top: 10px; }
-  .progress-bar {
-    height: 6px;
-    background: var(--surface-2);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--gold);
-    border-radius: 3px;
-    transition: width 0.4s ease;
-  }
-  .progress-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--text-light);
-    margin-top: 6px;
-  }
-
-  /* ── Empty state ── */
-  .empty {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: var(--text-light);
-  }
-  .empty-icon {
-    font-size: 32px;
-    margin-bottom: 12px;
-    opacity: 0.4;
-  }
-  .empty p { font-size: 14px; }
-
-  /* ── Toast ── */
-  .toast {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--navy);
-    color: var(--gold);
-    padding: 12px 24px;
-    border-radius: 40px;
-    font-size: 13px;
-    font-weight: 500;
-    box-shadow: var(--shadow-lg);
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    white-space: nowrap;
-    z-index: 999;
-    border: 1px solid var(--gold);
-  }
-  .toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  /* ── Divider ── */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 1.25rem 0;
-  }
-
-  /* ── Section label ── */
-  .section-label {
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-light);
-    margin: 1.25rem 0 0.75rem;
-  }
-
-  /* ── Confirm dialog ── */
-  .overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(15,31,69,0.5);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-  }
-  .overlay.show { display: flex; }
-  .dialog {
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    max-width: 380px;
-    width: 90%;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border);
-  }
-  .dialog h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-  .dialog p { font-size: 14px; color: var(--text-mid); margin-bottom: 1.5rem; }
-  .dialog-actions { display: flex; gap: 10px; justify-content: flex-end; }
-
-  /* ── Responsive ── */
-  @media (max-width: 600px) {
-    .form-grid { grid-template-columns: 1fr; }
-    .metrics { grid-template-columns: repeat(3,1fr); gap: 8px; }
-    .metric { padding: 0.8rem 0.5rem; }
-    .metric-val { font-size: 20px; }
-    .main { padding: 1.25rem 1rem; }
-    .nav-btn { padding: 12px 12px; font-size: 12px; }
-    .header-title { font-size: 17px; }
-  }
+:root {
+  --navy:#0F1F45;--navy-mid:#1a3066;--navy-light:#2a4a8a;
+  --gold:#C8A84B;--gold-light:#e8c96a;--gold-pale:#faeeda;--gold-dark:#8B6914;
+  --cream:#F9F4E8;--text:#1a1a2e;--text-mid:#4a4a6a;--text-light:#8a8aaa;
+  --surface:#ffffff;--surface-2:#F5F3EE;
+  --border:rgba(15,31,69,0.1);--border-strong:rgba(15,31,69,0.2);
+  --success:#1a7a4a;--success-bg:#e8f5ee;
+  --danger:#9b1a1a;--danger-bg:#fce8e8;
+  --info-bg:#e8edf8;--info:#1a3a8a;
+  --warn-bg:#fff8e8;--warn:#7a5a00;
+  --radius:10px;--radius-lg:16px;
+  --shadow:0 2px 12px rgba(15,31,69,0.08);--shadow-lg:0 8px 32px rgba(15,31,69,0.14);
+}
+[data-theme="dark"] {
+  --navy:#1a2d5a;--navy-mid:#253d7a;--navy-light:#3a5a9a;
+  --cream:#1a1a2a;--text:#e8e4d8;--text-mid:#a0a0c0;--text-light:#6a6a8a;
+  --surface:#242438;--surface-2:#1e1e30;
+  --border:rgba(200,168,75,0.12);--border-strong:rgba(200,168,75,0.22);
+  --success:#2a9a5a;--success-bg:#0d2a1a;
+  --danger:#c04040;--danger-bg:#2a0d0d;
+  --info-bg:#0d1a3a;--info:#6a8adf;
+  --warn-bg:#2a2000;--warn:#c8a84b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6;transition:background 0.3s,color 0.3s}
+.header{background:var(--navy);padding:0 1.5rem;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold)}
+.header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:14px;height:60px}
+.crest{width:38px;height:38px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--navy);flex-shrink:0;letter-spacing:1px}
+.header-title{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--cream);letter-spacing:.5px}
+.header-sub{font-size:10px;color:var(--gold);letter-spacing:1px;text-transform:uppercase}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.icon-btn{background:transparent;border:1px solid rgba(200,168,75,0.3);border-radius:8px;color:var(--gold);cursor:pointer;padding:5px 10px;font-size:12px;transition:all .2s}
+.icon-btn:hover{background:rgba(200,168,75,0.15)}
+.cycle-lbl{font-size:11px;color:var(--gold);letter-spacing:.5px}
+.nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:62px;z-index:99;overflow-x:auto;box-shadow:var(--shadow)}
+.nav-inner{max-width:960px;margin:0 auto;display:flex}
+.nav-btn{padding:12px 14px;border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:var(--text-mid);border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.nav-btn:hover{color:var(--navy);background:var(--surface-2)}
+.nav-btn.active{color:var(--navy);border-bottom-color:var(--gold);font-weight:500}
+[data-theme="dark"] .nav-btn.active{color:var(--gold)}
+.main{max-width:960px;margin:0 auto;padding:1.5rem 1rem}
+.page{display:none}.page.active{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin-bottom:1.25rem;box-shadow:var(--shadow)}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--navy)}
+[data-theme="dark"] .card-title{color:var(--gold)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
+.metrics-4{grid-template-columns:repeat(4,1fr)}
+.metric{background:var(--navy);border-radius:var(--radius);padding:1rem;text-align:center}
+.metric-label{font-size:10px;color:rgba(200,168,75,.7);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.metric-val{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--gold)}
+.metric-unit{font-size:10px;color:rgba(200,168,75,.5);margin-top:2px}
+.field{margin-bottom:.9rem}
+.field label{display:block;font-size:11px;font-weight:500;color:var(--text-mid);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+input[type=text],input[type=number],input[type=date],input[type=password],select,textarea{width:100%;padding:9px 13px;border:1px solid var(--border-strong);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--surface);transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,168,75,.15)}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230F1F45' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid-3{grid-template-columns:1fr 1fr 1fr}
+.btn{padding:9px 18px;border-radius:var(--radius);border:1px solid var(--border-strong);background:transparent;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--surface-2)}.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--navy);color:var(--gold);border-color:var(--navy);font-weight:500}
+.btn-primary:hover{background:var(--navy-mid)}
+.btn-gold{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:500}
+.btn-gold:hover{background:var(--gold-light)}
+.btn-success{background:var(--success-bg);color:var(--success);border-color:rgba(26,122,74,.2)}
+.btn-danger{background:var(--danger-bg);color:var(--danger);border-color:rgba(155,26,26,.2)}
+.btn-warn{background:var(--warn-bg);color:var(--warn);border-color:rgba(122,90,0,.2)}
+.btn-wa{background:#25D366;color:#fff;border-color:#25D366}
+.btn-wa:hover{background:#1fb856}
+.btn-sm{padding:5px 11px;font-size:12px}
+.btn-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:1rem}
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:500;letter-spacing:.2px}
+.badge-gold{background:var(--gold-pale);color:var(--gold-dark)}
+.badge-green{background:var(--success-bg);color:var(--success)}
+.badge-red{background:var(--danger-bg);color:var(--danger)}
+.badge-gray{background:var(--surface-2);color:var(--text-light)}
+.badge-blue{background:var(--info-bg);color:var(--info)}
+.badge-navy{background:var(--navy);color:var(--gold)}
+.badge-warn{background:var(--warn-bg);color:var(--warn)}
+.info-box{background:var(--info-bg);border-left:3px solid var(--navy-light);border-radius:0 var(--radius) var(--radius) 0;padding:10px 14px;font-size:13px;color:var(--info);margin-bottom:1.25rem}
+.warn-box{background:var(--warn-bg);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:10px 14px;font-size:13px;color:var(--warn);margin-bottom:1rem}
+.row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--border)}
+.row:last-child{border-bottom:none}
+.row-actions{display:flex;gap:6px;align-items:center;margin-left:auto;flex-shrink:0}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.avatar-sm{width:32px;height:32px;font-size:12px}
+.slot-num{width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--gold);font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.slot-num.open{background:var(--surface-2);color:var(--text-light);border:1px dashed var(--border-strong)}
+.slot-num.current{background:var(--gold);color:var(--navy);box-shadow:0 0 0 3px rgba(200,168,75,.25)}
+.progress-bar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .4s}
+.progress-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--text-light);margin-top:4px}
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--text-light)}
+.empty p{font-size:14px}
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(16px);background:var(--navy);color:var(--gold);padding:11px 22px;border-radius:40px;font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;z-index:999;border:1px solid var(--gold)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.divider{border:none;border-top:1px solid var(--border);margin:1rem 0}
+.section-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);margin:1rem 0 .6rem}
+.overlay{display:none;position:fixed;inset:0;background:rgba(15,31,69,.55);z-index:200;align-items:center;justify-content:center}
+.overlay.show{display:flex}
+.dialog{background:var(--surface);border-radius:var(--radius-lg);padding:1.75rem;max-width:400px;width:92%;box-shadow:var(--shadow-lg);border:1px solid var(--border)}
+.dialog h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--navy);margin-bottom:8px}
+[data-theme="dark"] .dialog h3{color:var(--gold)}
+.dialog p{font-size:14px;color:var(--text-mid);margin-bottom:1.25rem}
+.dialog-actions{display:flex;gap:10px;justify-content:flex-end}
+.pin-screen{display:none;position:fixed;inset:0;background:var(--navy);z-index:300;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem}
+.pin-screen.show{display:flex}
+.pin-input{width:160px;text-align:center;font-size:24px;letter-spacing:8px;font-family:'Cormorant Garamond',serif}
+.tabs{display:flex;gap:6px;margin-bottom:1rem}
+.tab-btn{padding:6px 14px;border:1px solid var(--border-strong);border-radius:20px;background:transparent;font-size:12px;cursor:pointer;color:var(--text-mid);transition:all .2s}
+.tab-btn.active{background:var(--navy);color:var(--gold);border-color:var(--navy)}
+.medal{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
+.medal-1{background:#FFD700;color:#5a4000}
+.medal-2{background:#C0C0C0;color:#3a3a3a}
+.medal-3{background:#CD7F32;color:#3a2000}
+table.data{width:100%;border-collapse:collapse;font-size:13px}
+table.data th{text-align:left;font-size:11px;font-weight:500;color:var(--text-light);text-transform:uppercase;letter-spacing:.5px;padding:6px 8px;border-bottom:1px solid var(--border)}
+table.data td{padding:8px;border-bottom:1px solid var(--border);color:var(--text)}
+table.data tr:last-child td{border-bottom:none}
+table.data tr:hover td{background:var(--surface-2)}
+.event-icon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+@media print{
+  .header,.nav,.btn,.btn-row,.icon-btn{display:none!important}
+  .page{display:block!important}
+  #page-report{display:block!important}
+  body{background:#fff;color:#000}
+  .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid}
+  .metric{background:#0F1F45!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media(max-width:600px){
+  .form-grid,.form-grid-3{grid-template-columns:1fr}
+  .metrics{gap:7px}.metric{padding:.8rem .5rem}.metric-val{font-size:20px}
+  .metrics-4{grid-template-columns:repeat(2,1fr)}
+  .main{padding:1rem .8rem}
+  .nav-btn{padding:10px 10px;font-size:11px}
+}
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header class="header">
   <div class="header-inner">
     <div class="crest">MF</div>
     <div>
-      <div class="header-title">Mbanji Family</div>
-      <div class="header-sub">Njangi System</div>
+      <div class="header-title" id="h-title">Mbanji Family</div>
+      <div class="header-sub" id="h-sub">Family Hub</div>
     </div>
-    <div class="header-right" id="cycleLabel">Cycle 1 · 2025</div>
+    <div class="header-right">
+      <span class="cycle-lbl" id="cycleLabel"></span>
+      <button class="icon-btn" onclick="toggleLang()" id="lang-btn">FR</button>
+      <button class="icon-btn" onclick="toggleDark()" id="dark-btn">☾</button>
+    </div>
   </div>
 </header>
 
-<!-- Nav -->
 <nav class="nav">
-  <div class="nav-inner">
-    <button class="nav-btn active" onclick="showPage('signup',this)">Sign up</button>
-    <button class="nav-btn" onclick="showPage('rotation',this)">Rotation</button>
-    <button class="nav-btn" onclick="showPage('members',this)">Members</button>
-    <button class="nav-btn" onclick="showPage('payments',this)">Payments</button>
-    <button class="nav-btn" onclick="showPage('admin',this)">Admin</button>
+  <div class="nav-inner" id="nav-inner">
+    <button class="nav-btn active" onclick="showPage('signup',this)" data-t="nav_signup">Sign up</button>
+    <button class="nav-btn" onclick="showPage('rotation',this)" data-t="nav_rotation">Rotation</button>
+    <button class="nav-btn" onclick="showPage('members',this)" data-t="nav_members">Members</button>
+    <button class="nav-btn" onclick="showPage('payments',this)" data-t="nav_payments">Payments</button>
+    <button class="nav-btn" onclick="showPage('troublebank',this)" data-t="nav_tb">Trouble bank</button>
+    <button class="nav-btn" onclick="showPage('birthdays',this)" data-t="nav_bday">Birthdays</button>
+    <button class="nav-btn" onclick="showPage('scholarship',this)" data-t="nav_scholar">Scholarship</button>
+    <button class="nav-btn" onclick="showPage('events',this)" data-t="nav_events">Events</button>
+    <button class="nav-btn" onclick="showPage('report',this)" data-t="nav_report">Report</button>
+    <button class="nav-btn" onclick="goAdmin()" data-t="nav_admin">Admin</button>
   </div>
 </nav>
 
 <main class="main">
 
-  <!-- ── SIGN UP PAGE ── -->
-  <div id="page-signup" class="page active">
-
-    <div class="metrics">
-      <div class="metric">
-        <div class="metric-label">Signed up</div>
-        <div class="metric-val" id="m-signed">0</div>
-        <div class="metric-unit">members</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Open slots</div>
-        <div class="metric-val" id="m-slots">12</div>
-        <div class="metric-unit">remaining</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Weekly pot</div>
-        <div class="metric-val" id="m-pot">0</div>
-        <div class="metric-unit">FCFA</div>
-      </div>
-    </div>
-
-    <div class="info-box">
-      Each member contributes <strong>1,000 FCFA</strong> every Sunday via mobile money. The week's beneficiary also contributes <strong>1,000 FCFA</strong> to the trouble bank upon receiving the pot.
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Join the njangi</div>
-        <span class="badge badge-gold" id="prog-badge">0 / 12</span>
-      </div>
-
-      <div class="form-grid">
-        <div class="field">
-          <label>Full name</label>
-          <input type="text" id="inp-name" placeholder="e.g. Marie Mbanji">
-        </div>
-        <div class="field">
-          <label>Phone (mobile money)</label>
-          <input type="text" id="inp-phone" placeholder="e.g. 677 123 456">
-        </div>
-        <div class="field">
-          <label>Mobile money network</label>
-          <select id="inp-network">
-            <option value="">Select network</option>
-            <option>MTN MoMo</option>
-            <option>Orange Money</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Preferred slot (optional)</label>
-          <select id="inp-slot">
-            <option value="">No preference — assign randomly</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="signUp()">Confirm sign-up</button>
-        <button class="btn" onclick="clearForm()">Clear</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Registration progress</div>
-      </div>
-      <div class="progress-wrap">
-        <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
-        <div class="progress-labels">
-          <span id="prog-left">Slots available</span>
-          <span id="prog-pct">0%</span>
-        </div>
-      </div>
-    </div>
-
+<!-- ── SIGN UP ── -->
+<div id="page-signup" class="page active">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label" data-t="m_signed">Signed up</div><div class="metric-val" id="m-signed">0</div><div class="metric-unit" data-t="m_members">members</div></div>
+    <div class="metric"><div class="metric-label" data-t="m_slots">Open slots</div><div class="metric-val" id="m-slots">12</div><div class="metric-unit" data-t="m_remaining">remaining</div></div>
+    <div class="metric"><div class="metric-label" data-t="m_pot">Weekly pot</div><div class="metric-val" id="m-pot">0</div><div class="metric-unit">FCFA</div></div>
   </div>
-
-  <!-- ── ROTATION PAGE ── -->
-  <div id="page-rotation" class="page">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Weekly rotation order</div>
-        <div style="display:flex;gap:8px">
-          <button class="btn btn-sm" onclick="shuffleRotation()">Shuffle</button>
-          <button class="btn btn-primary btn-sm" onclick="drawRotation()">Draw rotation</button>
-        </div>
-      </div>
-      <div id="rotation-list"></div>
+  <div class="info-box" data-t="signup_info">Each member contributes <strong>1,000 FCFA</strong> every Sunday via mobile money. The week's beneficiary also contributes <strong>1,000 FCFA</strong> to the trouble bank upon receiving the pot.</div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="join_njangi">Join the njangi</div><span class="badge badge-gold" id="prog-badge">0 / 12</span></div>
+    <div class="form-grid">
+      <div class="field"><label data-t="lbl_name">Full name</label><input type="text" id="inp-name" data-ph="ph_name"></div>
+      <div class="field"><label data-t="lbl_phone">Phone (mobile money)</label><input type="text" id="inp-phone" data-ph="ph_phone"></div>
+      <div class="field"><label data-t="lbl_network">Network</label>
+        <select id="inp-network"><option value="" data-t="sel_network">Select network</option><option>MTN MoMo</option><option>Orange Money</option></select></div>
+      <div class="field"><label data-t="lbl_slot">Preferred slot</label>
+        <select id="inp-slot"><option value="" data-t="no_pref">No preference — assign randomly</option></select></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="signUp()" data-t="btn_confirm">Confirm sign-up</button>
+      <button class="btn" onclick="clearForm()" data-t="btn_clear">Clear</button>
     </div>
   </div>
-
-  <!-- ── MEMBERS PAGE ── -->
-  <div id="page-members" class="page">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Registered members</div>
-        <span class="badge badge-navy" id="members-count">0 members</span>
-      </div>
-      <div id="members-list"></div>
-    </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="reg_progress">Registration progress</div></div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="progress-labels"><span id="prog-left"></span><span id="prog-pct">0%</span></div>
   </div>
+</div>
 
-  <!-- ── PAYMENTS PAGE ── -->
-  <div id="page-payments" class="page">
-
-    <div class="metrics">
-      <div class="metric">
-        <div class="metric-label">Current week</div>
-        <div class="metric-val" id="pay-week">1</div>
-        <div class="metric-unit">of cycle</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Paid this week</div>
-        <div class="metric-val" id="pay-paid">0</div>
-        <div class="metric-unit">members</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Trouble bank</div>
-        <div class="metric-val" id="pay-tb">0</div>
-        <div class="metric-unit">FCFA</div>
+<!-- ── ROTATION ── -->
+<div id="page-rotation" class="page">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" data-t="rotation_title">Weekly rotation order</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-sm" onclick="shuffleRotation()" data-t="btn_shuffle">Shuffle</button>
+        <button class="btn btn-primary btn-sm" onclick="drawRotation()" data-t="btn_draw">Draw rotation</button>
+        <button class="btn btn-wa btn-sm" onclick="shareWhatsApp()">📲 WhatsApp</button>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">This week's beneficiary</div>
-      </div>
-      <div id="beneficiary-card"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Payment status</div>
-        <button class="btn btn-sm" onclick="markAllPaid()">Mark all paid</button>
-      </div>
-      <div id="payment-list"></div>
-    </div>
-
+    <div id="rotation-list"></div>
   </div>
+</div>
 
-  <!-- ── ADMIN PAGE ── -->
-  <div id="page-admin" class="page">
-
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Cycle settings</div>
-      </div>
-      <div class="form-grid">
-        <div class="field">
-          <label>Contribution amount (FCFA)</label>
-          <input type="number" id="cfg-amount" value="1000" min="100" step="100">
-        </div>
-        <div class="field">
-          <label>Number of slots</label>
-          <input type="number" id="cfg-slots" value="12" min="2" max="52">
-        </div>
-        <div class="field">
-          <label>Cycle start date</label>
-          <input type="date" id="cfg-start">
-        </div>
-        <div class="field">
-          <label>Cycle name / label</label>
-          <input type="text" id="cfg-label" placeholder="e.g. Cycle 1 · 2025">
-        </div>
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="applySettings()">Save settings</button>
-      </div>
+<!-- ── MEMBERS ── -->
+<div id="page-members" class="page">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" data-t="members_title">Registered members</div>
+      <span class="badge badge-navy" id="members-count">0</span>
     </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Trouble bank</div>
-      </div>
-      <div class="metrics" style="margin-bottom:1rem">
-        <div class="metric">
-          <div class="metric-label">Balance</div>
-          <div class="metric-val" id="tb-balance">0</div>
-          <div class="metric-unit">FCFA</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">Contributions</div>
-          <div class="metric-val" id="tb-count">0</div>
-          <div class="metric-unit">recorded</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">Next expected</div>
-          <div class="metric-val" id="tb-next">1,000</div>
-          <div class="metric-unit">FCFA</div>
-        </div>
-      </div>
-      <div class="btn-row" style="margin-top:0">
-        <button class="btn btn-gold" onclick="recordTB()">Record trouble bank payment (+1,000 FCFA)</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Data management</div>
-      </div>
-      <p style="font-size:13px;color:var(--text-mid);margin-bottom:1rem">Export a backup of all data or reset the cycle for a new rotation.</p>
-      <div class="btn-row">
-        <button class="btn" onclick="exportData()">Export data (JSON)</button>
-        <button class="btn btn-danger" onclick="confirmReset()">Reset all data</button>
-      </div>
-    </div>
-
+    <div id="members-list"></div>
   </div>
+</div>
 
-</main>
+<!-- ── PAYMENTS ── -->
+<div id="page-payments" class="page">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label" data-t="cur_week">Current week</div><div class="metric-val" id="pay-week">1</div><div class="metric-unit" data-t="of_cycle">of cycle</div></div>
+    <div class="metric"><div class="metric-label" data-t="paid_week">Paid this week</div><div class="metric-val" id="pay-paid">0</div><div class="metric-unit" data-t="m_members">members</div></div>
+    <div class="metric"><div class="metric-label" data-t="penalties">Penalties</div><div class="metric-val" id="pay-penalties">0</div><div class="metric-unit">FCFA</div></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="beneficiary">This week's beneficiary</div></div>
+    <div id="beneficiary-card"></div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" data-t="pay_status">Payment status</div>
+      <button class="btn btn-sm" onclick="markAllPaid()" data-t="mark_all">Mark all paid</button>
+    </div>
+    <div id="payment-list"></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="penalty_log">Penalty log</div></div>
+    <div id="penalty-list"></div>
+  </div>
+</div>
 
-<!-- Toast -->
-<div class="toast" id="toast"></div>
+<!-- ── TROUBLE BANK ── -->
+<div id="page-troublebank" class="page">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label" data-t="tb_enrolled">Enrolled</div><div class="metric-val" id="tb-enrolled">0</div><div class="metric-unit" data-t="m_members">members</div></div>
+    <div class="metric"><div class="metric-label" data-t="tb_balance">Fund balance</div><div class="metric-val" id="tb-bal-display">0</div><div class="metric-unit">FCFA</div></div>
+    <div class="metric"><div class="metric-label" data-t="tb_month_paid">Paid this month</div><div class="metric-val" id="tb-month-paid">0</div><div class="metric-unit" data-t="m_members">members</div></div>
+  </div>
+  <div class="info-box" data-t="tb_info">Every member contributes <strong>500 FCFA/month</strong> to the trouble bank. The njangi beneficiary adds 1,000 FCFA each week.</div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="tb_signup">Sign up for monthly contribution</div><span class="badge badge-gold" id="tb-signup-badge">0</span></div>
+    <div class="form-grid">
+      <div class="field"><label data-t="lbl_name">Full name</label><input type="text" id="tb-inp-name" data-ph="ph_name"></div>
+      <div class="field"><label data-t="lbl_phone">Phone</label><input type="text" id="tb-inp-phone" data-ph="ph_phone"></div>
+      <div class="field"><label data-t="lbl_network">Network</label>
+        <select id="tb-inp-network"><option value="" data-t="sel_network">Select network</option><option>MTN MoMo</option><option>Orange Money</option></select></div>
+      <div class="field"><label data-t="lbl_type">Member type</label>
+        <select id="tb-inp-type"><option value="regular" data-t="type_regular">Regular member</option><option value="njangi" data-t="type_njangi">Also in njangi</option></select></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="tbSignUp()" data-t="btn_enrol">Enrol in trouble bank</button><button class="btn" onclick="tbClearForm()" data-t="btn_clear">Clear</button></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="monthly_tracker">Monthly payment tracker</div>
+      <div style="display:flex;gap:8px;align-items:center"><span style="font-size:13px;color:var(--text-mid)" id="tb-cur-month"></span><button class="btn btn-sm" onclick="tbMarkAllPaid()" data-t="mark_all">Mark all paid</button></div>
+    </div>
+    <div id="tb-payment-list"></div>
+  </div>
+</div>
 
-<!-- Confirm dialog -->
-<div class="overlay" id="overlay">
+<!-- ── BIRTHDAYS ── -->
+<div id="page-birthdays" class="page">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label" data-t="bday_children">Children registered</div><div class="metric-val" id="bday-count">0</div></div>
+    <div class="metric"><div class="metric-label" data-t="bday_upcoming">Upcoming (30 days)</div><div class="metric-val" id="bday-upcoming">0</div></div>
+    <div class="metric"><div class="metric-label" data-t="bday_fund">Gifts disbursed</div><div class="metric-val" id="bday-fund">0</div><div class="metric-unit">FCFA</div></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="reg_child">Register a child</div></div>
+    <div class="form-grid">
+      <div class="field"><label data-t="lbl_child_name">Child's full name</label><input type="text" id="bday-name" data-ph="ph_name"></div>
+      <div class="field"><label data-t="lbl_dob">Date of birth</label><input type="date" id="bday-dob"></div>
+      <div class="field"><label data-t="lbl_parent">Parent / guardian (member name)</label><input type="text" id="bday-parent" data-ph="ph_name"></div>
+      <div class="field"><label data-t="lbl_phone">Parent's phone</label><input type="text" id="bday-phone" data-ph="ph_phone"></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="bdayRegister()" data-t="btn_register">Register child</button><button class="btn" onclick="bdayClear()" data-t="btn_clear">Clear</button></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="children_list">Children list</div></div>
+    <div id="bday-list"></div>
+  </div>
+</div>
+
+<!-- birthday gift modal -->
+<div class="overlay" id="bday-overlay">
   <div class="dialog">
-    <h3 id="dlg-title">Confirm action</h3>
-    <p id="dlg-msg">Are you sure?</p>
+    <h3 data-t="bday_gift_title">Birthday gift</h3>
+    <p id="bday-gift-info"></p>
+    <div style="background:var(--surface-2);border-radius:var(--radius);padding:1rem;margin-bottom:1rem;font-size:14px" id="bday-gift-calc"></div>
     <div class="dialog-actions">
-      <button class="btn" onclick="closeDialog()">Cancel</button>
-      <button class="btn btn-danger" id="dlg-confirm">Confirm</button>
+      <button class="btn" onclick="closeBdayOverlay()" data-t="btn_cancel">Cancel</button>
+      <button class="btn btn-gold" onclick="confirmGift()" data-t="btn_disburse">Disburse gift</button>
     </div>
   </div>
 </div>
 
+<!-- ── SCHOLARSHIP ── -->
+<div id="page-scholarship" class="page">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label" data-t="scholar_entries">Entries</div><div class="metric-val" id="sch-entries">0</div></div>
+    <div class="metric"><div class="metric-label" data-t="scholar_awarded">Total awarded</div><div class="metric-val" id="sch-awarded">0</div><div class="metric-unit">FCFA</div></div>
+    <div class="metric"><div class="metric-label" data-t="scholar_year">Year</div><div class="metric-val" id="sch-year">—</div></div>
+  </div>
+  <div class="info-box" data-t="scholar_info">Submit school report cards by 31 July. The three highest averages receive: 1st 25,000 · 2nd 15,000 · 3rd 10,000 FCFA.</div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="submit_result">Submit school result</div></div>
+    <div class="form-grid">
+      <div class="field"><label data-t="lbl_child_name">Child's name</label><input type="text" id="sch-name" data-ph="ph_name"></div>
+      <div class="field"><label data-t="lbl_parent">Parent / guardian</label><input type="text" id="sch-parent" data-ph="ph_name"></div>
+      <div class="field"><label data-t="lbl_class">Class / grade</label><input type="text" id="sch-class" placeholder="e.g. Form 4 / CM2"></div>
+      <div class="field"><label data-t="lbl_avg">Overall average (%)</label><input type="number" id="sch-avg" min="0" max="100" step="0.1" placeholder="e.g. 87.5"></div>
+      <div class="field"><label data-t="lbl_school">School</label><input type="text" id="sch-school" data-ph="ph_school"></div>
+      <div class="field"><label data-t="lbl_year">Academic year</label><input type="text" id="sch-year-inp" placeholder="e.g. 2024-2025"></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="schSubmit()" data-t="btn_submit">Submit result</button><button class="btn" onclick="schClear()" data-t="btn_clear">Clear</button></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="rankings">Rankings &amp; prizes</div><button class="btn btn-sm btn-gold" onclick="schAward()" data-t="btn_award">Award prizes</button></div>
+    <div id="sch-rankings"></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="all_entries">All entries</div></div>
+    <div id="sch-entries-list"></div>
+  </div>
+</div>
+
+<!-- ── FAMILY EVENTS ── -->
+<div id="page-events" class="page">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label" data-t="events_total">Total events</div><div class="metric-val" id="ev-total">0</div></div>
+    <div class="metric"><div class="metric-label" data-t="ev_collected">Collected</div><div class="metric-val" id="ev-collected">0</div><div class="metric-unit">FCFA</div></div>
+    <div class="metric"><div class="metric-label" data-t="ev_pending">Pending collection</div><div class="metric-val" id="ev-pending">0</div><div class="metric-unit">FCFA</div></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="log_event">Log a family event</div></div>
+    <div class="form-grid">
+      <div class="field"><label data-t="lbl_event_type">Event type</label>
+        <select id="ev-type">
+          <option value="death_member" data-t="ev_death_member">Death of a member</option>
+          <option value="death_spouse" data-t="ev_death_spouse">Death of member's spouse/child</option>
+          <option value="death_parent" data-t="ev_death_parent">Death of member's parent</option>
+          <option value="birth" data-t="ev_birth">Birth of a child</option>
+          <option value="marriage" data-t="ev_marriage">Marriage of a member</option>
+          <option value="illness" data-t="ev_illness">Serious illness / hospitalisation</option>
+          <option value="other" data-t="ev_other">Other</option>
+        </select>
+      </div>
+      <div class="field"><label data-t="lbl_member_concerned">Member concerned</label><input type="text" id="ev-member" data-ph="ph_name"></div>
+      <div class="field"><label data-t="lbl_date">Date</label><input type="date" id="ev-date"></div>
+      <div class="field"><label data-t="lbl_contribution">Contribution per member (FCFA)</label><input type="number" id="ev-amount" min="0" step="100" placeholder="e.g. 1500"></div>
+      <div class="field" style="grid-column:1/-1"><label data-t="lbl_notes">Notes</label><textarea id="ev-notes" rows="2" style="resize:vertical" placeholder="Optional details..."></textarea></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="evLog()" data-t="btn_log">Log event</button><button class="btn" onclick="evClear()" data-t="btn_clear">Clear</button></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="events_log">Events log</div></div>
+    <div id="events-list"></div>
+  </div>
+</div>
+
+<!-- ── MONTHLY REPORT ── -->
+<div id="page-report" class="page">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" data-t="monthly_report">Monthly report</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary btn-sm" onclick="window.print()" data-t="btn_print">🖨 Print</button>
+        <button class="btn btn-wa btn-sm" onclick="shareReport()">📲 Share</button>
+      </div>
+    </div>
+    <div id="report-content"></div>
+  </div>
+</div>
+
+<!-- ── ADMIN ── -->
+<div id="page-admin" class="page">
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="cycle_settings">Cycle settings</div></div>
+    <div class="form-grid">
+      <div class="field"><label data-t="lbl_amount">Contribution (FCFA)</label><input type="number" id="cfg-amount" value="1000" min="100" step="100"></div>
+      <div class="field"><label data-t="lbl_slots">Number of slots</label><input type="number" id="cfg-slots" value="12" min="2" max="52"></div>
+      <div class="field"><label data-t="lbl_start">Cycle start date</label><input type="date" id="cfg-start"></div>
+      <div class="field"><label data-t="lbl_label">Cycle label</label><input type="text" id="cfg-label" placeholder="Cycle 1 · 2025"></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="applySettings()" data-t="btn_save">Save settings</button></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="pin_settings">Admin PIN</div></div>
+    <div class="info-box" data-t="pin_info">Set a 4-digit PIN to protect Admin and Trouble bank tabs. Leave blank to disable.</div>
+    <div class="form-grid">
+      <div class="field"><label data-t="lbl_new_pin">New PIN (4 digits)</label><input type="password" id="pin-new" maxlength="4" placeholder="••••"></div>
+      <div class="field"><label data-t="lbl_confirm_pin">Confirm PIN</label><input type="password" id="pin-confirm" maxlength="4" placeholder="••••"></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="setPin()" data-t="btn_set_pin">Set PIN</button><button class="btn btn-danger btn-sm" onclick="clearPin()" data-t="btn_clear_pin">Clear PIN</button></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="tb_admin">Trouble bank (njangi payments)</div></div>
+    <div class="metrics">
+      <div class="metric"><div class="metric-label" data-t="tb_balance">Balance</div><div class="metric-val" id="tb-balance">0</div><div class="metric-unit">FCFA</div></div>
+      <div class="metric"><div class="metric-label" data-t="njangi_contrib">Njangi contributions</div><div class="metric-val" id="tb-count">0</div></div>
+      <div class="metric"><div class="metric-label" data-t="monthly_contrib">Monthly contributors</div><div class="metric-val" id="tb-monthly-n">0</div></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-gold" onclick="recordTB()" data-t="btn_record_tb">Record njangi TB payment (+1,000 FCFA)</button></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title" data-t="data_mgmt">Data management</div></div>
+    <div class="btn-row">
+      <button class="btn" onclick="exportData()" data-t="btn_export">Export data (JSON)</button>
+      <button class="btn btn-danger" onclick="confirmReset()" data-t="btn_reset">Reset all data</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- PIN screen -->
+<div class="pin-screen" id="pin-screen">
+  <div style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600" data-t="pin_enter">Enter Admin PIN</div>
+  <input class="pin-input" type="password" id="pin-entry" maxlength="4" inputmode="numeric" placeholder="••••" onkeydown="if(event.key==='Enter')checkPin()">
+  <div style="display:flex;gap:12px">
+    <button class="btn btn-gold" onclick="checkPin()" data-t="btn_unlock">Unlock</button>
+    <button class="icon-btn" onclick="cancelPin()" data-t="btn_cancel">Cancel</button>
+  </div>
+  <div id="pin-error" style="color:#f87;font-size:13px;min-height:20px"></div>
+</div>
+
+<!-- Confirm dialog -->
+<div class="overlay" id="overlay">
+  <div class="dialog">
+    <h3 id="dlg-title"></h3><p id="dlg-msg"></p>
+    <div class="dialog-actions">
+      <button class="btn" onclick="closeDialog()" data-t="btn_cancel">Cancel</button>
+      <button class="btn btn-danger" id="dlg-confirm" data-t="btn_confirm">Confirm</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
 <script>
-const DEFAULT = {
-  maxSlots: 12, amount: 1000, members: [], rotation: [],
-  rotationDrawn: false, tbBalance: 0, tbCount: 0,
-  cycleStart: new Date().toISOString().split('T')[0],
-  cycleLabel: 'Cycle 1 · ' + new Date().getFullYear()
+/* ══ TRANSLATIONS ══════════════════════════════════════════════════ */
+const T = {
+  en:{
+    nav_signup:'Sign up',nav_rotation:'Rotation',nav_members:'Members',nav_payments:'Payments',
+    nav_tb:'Trouble bank',nav_bday:'Birthdays',nav_scholar:'Scholarship',nav_events:'Events',
+    nav_report:'Report',nav_admin:'Admin',
+    m_signed:'Signed up',m_slots:'Open slots',m_pot:'Weekly pot',m_members:'members',m_remaining:'remaining',
+    signup_info:'Each member contributes <strong>1,000 FCFA</strong> every Sunday via mobile money. The week\'s beneficiary also contributes <strong>1,000 FCFA</strong> to the trouble bank upon receiving the pot.',
+    join_njangi:'Join the njangi',lbl_name:'Full name',lbl_phone:'Phone (mobile money)',lbl_network:'Network',
+    lbl_slot:'Preferred slot',sel_network:'Select network',no_pref:'No preference — assign randomly',
+    btn_confirm:'Confirm sign-up',btn_clear:'Clear',reg_progress:'Registration progress',
+    rotation_title:'Weekly rotation order',btn_shuffle:'Shuffle',btn_draw:'Draw rotation',
+    members_title:'Registered members',cur_week:'Current week',of_cycle:'of cycle',
+    paid_week:'Paid this week',penalties:'Penalties',beneficiary:"This week's beneficiary",
+    pay_status:'Payment status',mark_all:'Mark all paid',penalty_log:'Penalty log',
+    tb_enrolled:'Enrolled',tb_balance:'Fund balance',tb_month_paid:'Paid this month',
+    tb_info:'Every member contributes <strong>500 FCFA/month</strong> to the trouble bank. The njangi beneficiary adds 1,000 FCFA each week.',
+    tb_signup:'Sign up for monthly contribution',btn_enrol:'Enrol in trouble bank',
+    lbl_type:'Member type',type_regular:'Regular member',type_njangi:'Also in njangi',
+    monthly_tracker:'Monthly payment tracker',
+    bday_children:'Children registered',bday_upcoming:'Upcoming (30 days)',bday_fund:'Gifts disbursed',
+    reg_child:'Register a child',lbl_child_name:"Child's full name",lbl_dob:'Date of birth',
+    lbl_parent:'Parent / guardian',btn_register:'Register child',children_list:'Children list',
+    bday_gift_title:'Birthday gift',btn_disburse:'Disburse gift',btn_cancel:'Cancel',
+    scholar_entries:'Entries',scholar_awarded:'Total awarded',scholar_year:'Year',
+    scholar_info:'Submit school report cards by 31 July. The three highest averages receive: 1st 25,000 · 2nd 15,000 · 3rd 10,000 FCFA.',
+    submit_result:'Submit school result',lbl_class:'Class / grade',lbl_avg:'Overall average (%)',
+    lbl_school:'School',lbl_year:'Academic year',btn_submit:'Submit result',
+    rankings:'Rankings & prizes',btn_award:'Award prizes',all_entries:'All entries',
+    events_total:'Total events',ev_collected:'Collected',ev_pending:'Pending collection',
+    log_event:'Log a family event',lbl_event_type:'Event type',lbl_member_concerned:'Member concerned',
+    lbl_date:'Date',lbl_contribution:'Contribution per member (FCFA)',lbl_notes:'Notes',btn_log:'Log event',
+    ev_death_member:'Death of a member',ev_death_spouse:"Death of member's spouse/child",
+    ev_death_parent:"Death of member's parent",ev_birth:'Birth of a child',
+    ev_marriage:'Marriage of a member',ev_illness:'Serious illness / hospitalisation',ev_other:'Other',
+    events_log:'Events log',monthly_report:'Monthly report',btn_print:'🖨 Print',
+    cycle_settings:'Cycle settings',lbl_amount:'Contribution (FCFA)',lbl_slots:'Number of slots',
+    lbl_start:'Cycle start date',lbl_label:'Cycle label',btn_save:'Save settings',
+    pin_settings:'Admin PIN',pin_info:'Set a 4-digit PIN to protect Admin and Trouble bank tabs. Leave blank to disable.',
+    lbl_new_pin:'New PIN (4 digits)',lbl_confirm_pin:'Confirm PIN',btn_set_pin:'Set PIN',btn_clear_pin:'Clear PIN',
+    tb_admin:'Trouble bank (njangi payments)',njangi_contrib:'Njangi contributions',monthly_contrib:'Monthly contributors',
+    btn_record_tb:'Record njangi TB payment (+1,000 FCFA)',data_mgmt:'Data management',
+    btn_export:'Export data (JSON)',btn_reset:'Reset all data',
+    pin_enter:'Enter Admin PIN',btn_unlock:'Unlock',
+    h_title:'Mbanji Family',h_sub:'Family Hub',
+    ph_name:'e.g. Marie Mbanji',ph_phone:'e.g. 677 123 456',ph_school:'School name',
+    slots_remaining:'slot(s) remaining',all_filled:'All slots filled — ready to draw!',
+    lbl_slots2:'slots remaining',
+  },
+  fr:{
+    nav_signup:'Inscription',nav_rotation:'Rotation',nav_members:'Membres',nav_payments:'Paiements',
+    nav_tb:'Caisse secours',nav_bday:'Anniversaires',nav_scholar:'Bourse',nav_events:'Événements',
+    nav_report:'Rapport',nav_admin:'Admin',
+    m_signed:'Inscrits',m_slots:'Places libres',m_pot:'Cagnotte hebdo',m_members:'membres',m_remaining:'disponibles',
+    signup_info:'Chaque membre cotise <strong>1 000 FCFA</strong> chaque dimanche via mobile money. Le bénéficiaire cotise en plus <strong>1 000 FCFA</strong> à la caisse de secours.',
+    join_njangi:'Rejoindre le njangi',lbl_name:'Nom complet',lbl_phone:'Téléphone (mobile money)',lbl_network:'Réseau',
+    lbl_slot:'Semaine préférée',sel_network:'Choisir un réseau',no_pref:'Pas de préférence — attribuer aléatoirement',
+    btn_confirm:"Confirmer l'inscription",btn_clear:'Effacer',reg_progress:"Progression des inscriptions",
+    rotation_title:'Ordre de rotation hebdomadaire',btn_shuffle:'Mélanger',btn_draw:'Tirer la rotation',
+    members_title:'Membres inscrits',cur_week:'Semaine en cours',of_cycle:'du cycle',
+    paid_week:'Payé cette semaine',penalties:'Pénalités',beneficiary:'Bénéficiaire de la semaine',
+    pay_status:'Statut des paiements',mark_all:'Tout marquer payé',penalty_log:'Journal des pénalités',
+    tb_enrolled:'Inscrits',tb_balance:'Solde du fonds',tb_month_paid:'Payé ce mois',
+    tb_info:'Chaque membre cotise <strong>500 FCFA/mois</strong> à la caisse de secours. Le bénéficiaire njangi ajoute 1 000 FCFA chaque semaine.',
+    tb_signup:'Inscription cotisation mensuelle',btn_enrol:'Inscrire à la caisse',
+    lbl_type:'Type de membre',type_regular:'Membre régulier',type_njangi:'Aussi dans le njangi',
+    monthly_tracker:'Suivi des paiements mensuels',
+    bday_children:'Enfants enregistrés',bday_upcoming:'Prochains (30 jours)',bday_fund:'Cadeaux versés',
+    reg_child:'Enregistrer un enfant',lbl_child_name:"Nom complet de l'enfant",lbl_dob:'Date de naissance',
+    lbl_parent:'Parent / tuteur',btn_register:"Enregistrer l'enfant",children_list:'Liste des enfants',
+    bday_gift_title:"Cadeau d'anniversaire",btn_disburse:'Verser le cadeau',btn_cancel:'Annuler',
+    scholar_entries:'Dossiers',scholar_awarded:'Total attribué',scholar_year:'Année',
+    scholar_info:"Soumettre les bulletins avant le 31 juillet. Les trois meilleures moyennes reçoivent : 1er 25 000 · 2e 15 000 · 3e 10 000 FCFA.",
+    submit_result:'Soumettre un résultat scolaire',lbl_class:'Classe',lbl_avg:'Moyenne générale (%)',
+    lbl_school:'École',lbl_year:'Année scolaire',btn_submit:'Soumettre',
+    rankings:'Classement et prix',btn_award:'Attribuer les prix',all_entries:'Tous les dossiers',
+    events_total:'Événements total',ev_collected:'Collecté',ev_pending:'En attente',
+    log_event:'Enregistrer un événement',lbl_event_type:"Type d'événement",lbl_member_concerned:'Membre concerné',
+    lbl_date:'Date',lbl_contribution:'Cotisation par membre (FCFA)',lbl_notes:'Notes',btn_log:'Enregistrer',
+    ev_death_member:"Décès d'un membre",ev_death_spouse:"Décès du conjoint/enfant d'un membre",
+    ev_death_parent:"Décès du parent d'un membre",ev_birth:"Naissance d'un enfant",
+    ev_marriage:"Mariage d'un membre",ev_illness:'Maladie grave / hospitalisation',ev_other:'Autre',
+    events_log:'Journal des événements',monthly_report:'Rapport mensuel',btn_print:'🖨 Imprimer',
+    cycle_settings:'Paramètres du cycle',lbl_amount:'Cotisation (FCFA)',lbl_slots:'Nombre de places',
+    lbl_start:'Date de début du cycle',lbl_label:'Nom du cycle',btn_save:'Enregistrer',
+    pin_settings:'Code PIN Admin',pin_info:"Définissez un code PIN à 4 chiffres pour protéger les onglets Admin et Caisse. Laissez vide pour désactiver.",
+    lbl_new_pin:'Nouveau PIN (4 chiffres)',lbl_confirm_pin:'Confirmer le PIN',btn_set_pin:'Définir le PIN',btn_clear_pin:'Supprimer le PIN',
+    tb_admin:'Caisse de secours (paiements njangi)',njangi_contrib:'Contributions njangi',monthly_contrib:'Cotisants mensuels',
+    btn_record_tb:'Enregistrer paiement caisse njangi (+1 000 FCFA)',data_mgmt:'Gestion des données',
+    btn_export:'Exporter les données (JSON)',btn_reset:'Réinitialiser toutes les données',
+    pin_enter:'Saisir le PIN Admin',btn_unlock:'Déverrouiller',
+    h_title:'Famille Mbanji',h_sub:'Espace familial',
+    ph_name:'ex. Marie Mbanji',ph_phone:'ex. 677 123 456',ph_school:"Nom de l'école",
+    slots_remaining:'place(s) disponible(s)',all_filled:'Toutes les places remplies !',
+    lbl_slots2:'places restantes',
+  }
 };
+let lang = localStorage.getItem('mbanji_lang') || 'en';
+function t(k){ return (T[lang][k] || T.en[k] || k); }
+function applyLang(){
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const k=el.getAttribute('data-t');
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder=t(k);
+    else el.innerHTML=t(k);
+  });
+  document.querySelectorAll('[data-ph]').forEach(el=>{ el.placeholder=t(el.getAttribute('data-ph')); });
+  document.getElementById('lang-btn').textContent = lang==='en'?'FR':'EN';
+  document.getElementById('h-title').textContent = t('h_title');
+  document.getElementById('h-sub').textContent   = t('h_sub');
+  render();
+}
+function toggleLang(){ lang = lang==='en'?'fr':'en'; localStorage.setItem('mbanji_lang',lang); applyLang(); }
 
+/* ══ DARK MODE ══════════════════════════════════════════════════════ */
+let dark = localStorage.getItem('mbanji_dark')==='1';
+function applyDark(){ document.documentElement.setAttribute('data-theme', dark?'dark':''); document.getElementById('dark-btn').textContent = dark?'☀':'☾'; }
+function toggleDark(){ dark=!dark; localStorage.setItem('mbanji_dark',dark?'1':'0'); applyDark(); }
+
+/* ══ STATE ══════════════════════════════════════════════════════════ */
+const DEFAULT = {
+  maxSlots:12, amount:1000, members:[], rotation:[],
+  rotationDrawn:false, tbBalance:0, tbCount:0,
+  cycleStart:new Date().toISOString().split('T')[0],
+  cycleLabel:'Cycle 1 · '+new Date().getFullYear(),
+  tbMembers:[], tbMonthlyAmount:500,
+  children:[], scholarEntries:[], scholarAwarded:[],
+  events:[], penalties:[], adminPin:''
+};
 let S = JSON.parse(JSON.stringify(DEFAULT));
-
-function save() {
-  try { localStorage.setItem('mbanji_njangi_v2', JSON.stringify(S)); } catch(e) {}
-}
-function load() {
-  try {
-    const d = localStorage.getItem('mbanji_njangi_v2');
-    if (d) S = { ...DEFAULT, ...JSON.parse(d) };
-  } catch(e) {}
+function save(){ try{ localStorage.setItem('mbanji_v3',JSON.stringify(S)); }catch(e){} }
+function load(){
+  try{ const d=localStorage.getItem('mbanji_v3'); if(d) S={...DEFAULT,...JSON.parse(d)}; }catch(e){}
+  S.tbMembers=S.tbMembers||[]; S.children=S.children||[];
+  S.scholarEntries=S.scholarEntries||[]; S.scholarAwarded=S.scholarAwarded||[];
+  S.events=S.events||[]; S.penalties=S.penalties||[]; S.adminPin=S.adminPin||'';
 }
 
-/* ── Toast ── */
+/* ══ HELPERS ════════════════════════════════════════════════════════ */
 let toastTimer;
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
-}
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2800); }
+function fmt(n){ return Math.round(n||0).toLocaleString(); }
+function initials(name){ return name.trim().split(/\s+/).map(w=>w[0]||'').join('').toUpperCase().slice(0,2)||'?'; }
+function currentWeek(){ if(!S.cycleStart) return 1; const d=Math.floor((Date.now()-new Date(S.cycleStart))/(7*86400000)); return Math.max(1,Math.min(d+1,S.maxSlots)); }
+function currentMonthKey(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
+function monthLabel(){ return new Date().toLocaleString(lang==='fr'?'fr-FR':'en-GB',{month:'long',year:'numeric'}); }
+function ageFromDob(dob){ const d=new Date(dob),n=new Date(); let a=n.getFullYear()-d.getFullYear(); if(n<new Date(n.getFullYear(),d.getMonth(),d.getDate())) a--; return a; }
+function daysToBirthday(dob){ const d=new Date(dob),n=new Date(); let next=new Date(n.getFullYear(),d.getMonth(),d.getDate()); if(next<n) next=new Date(n.getFullYear()+1,d.getMonth(),d.getDate()); return Math.round((next-n)/86400000); }
 
-/* ── Navigation ── */
-function showPage(id, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  if (btn) btn.classList.add('active');
+/* ══ PIN ════════════════════════════════════════════════════════════ */
+let pinTarget='';
+function goAdmin(){ if(S.adminPin){ pinTarget='admin'; showPinScreen(); } else showPage('admin'); }
+function goTB(){ if(S.adminPin){ pinTarget='troublebank'; showPinScreen(); } else showPage('troublebank'); }
+function showPinScreen(){ document.getElementById('pin-screen').classList.add('show'); document.getElementById('pin-entry').value=''; document.getElementById('pin-error').textContent=''; setTimeout(()=>document.getElementById('pin-entry').focus(),100); }
+function checkPin(){ const v=document.getElementById('pin-entry').value; if(v===S.adminPin){ document.getElementById('pin-screen').classList.remove('show'); showPage(pinTarget); } else { document.getElementById('pin-error').textContent='Incorrect PIN'; } }
+function cancelPin(){ document.getElementById('pin-screen').classList.remove('show'); }
+function setPin(){ const a=document.getElementById('pin-new').value, b=document.getElementById('pin-confirm').value; if(a&&a.length!==4){ toast('PIN must be 4 digits'); return; } if(a!==b){ toast('PINs do not match'); return; } S.adminPin=a; save(); toast(a?'PIN set successfully':'PIN cleared'); }
+function clearPin(){ S.adminPin=''; document.getElementById('pin-new').value=''; document.getElementById('pin-confirm').value=''; save(); toast('PIN cleared'); }
+
+/* ══ NAVIGATION ═════════════════════════════════════════════════════ */
+function showPage(id, btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  else { document.querySelectorAll('.nav-btn').forEach(b=>{ if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+id+"'")) b.classList.add('active'); }); }
   render();
 }
 
-/* ── Helpers ── */
-function initials(name) {
-  return name.trim().split(/\s+/).map(w => w[0] || '').join('').toUpperCase().slice(0, 2) || '?';
+/* ══ SIGNUP ═════════════════════════════════════════════════════════ */
+function refreshSlotDropdown(){
+  const sel=document.getElementById('inp-slot');
+  const taken=S.members.map(m=>m.slot).filter(Boolean);
+  sel.innerHTML='<option value="">'+t('no_pref')+'</option>';
+  for(let i=1;i<=S.maxSlots;i++) if(!taken.includes(i)){ const o=document.createElement('option'); o.value=i; o.textContent=(lang==='fr'?'Semaine ':'Week ')+i; sel.appendChild(o); }
 }
-function fmt(n) { return Math.round(n).toLocaleString(); }
-function currentWeek() {
-  if (!S.cycleStart) return 1;
-  const diff = Math.floor((Date.now() - new Date(S.cycleStart)) / (7 * 86400000));
-  return Math.max(1, Math.min(diff + 1, S.maxSlots));
+function signUp(){
+  const name=document.getElementById('inp-name').value.trim();
+  const phone=document.getElementById('inp-phone').value.trim();
+  const network=document.getElementById('inp-network').value;
+  const slotStr=document.getElementById('inp-slot').value;
+  if(!name||!phone||!network){ toast(lang==='fr'?'Veuillez remplir tous les champs':'Please fill all fields'); return; }
+  if(S.members.length>=S.maxSlots){ toast('All slots filled!'); return; }
+  if(S.members.find(m=>m.name.toLowerCase()===name.toLowerCase())){ toast(lang==='fr'?'Déjà inscrit':'Already registered'); return; }
+  let slot=slotStr?parseInt(slotStr):null;
+  if(slot&&S.members.find(m=>m.slot===slot)){ toast('Slot taken'); return; }
+  if(!slot){ const taken=S.members.map(m=>m.slot).filter(Boolean),avail=[]; for(let i=1;i<=S.maxSlots;i++) if(!taken.includes(i)) avail.push(i); slot=avail.length?avail[Math.floor(Math.random()*avail.length)]:null; }
+  S.members.push({name,phone,network,slot,paid:[],joinedAt:new Date().toLocaleDateString(lang==='fr'?'fr-FR':'en-GB')});
+  S.rotationDrawn=false; save(); clearForm(); render();
+  toast(name+(lang==='fr'?' inscrit(e) avec succès !':' registered successfully!'));
 }
+function clearForm(){ ['inp-name','inp-phone'].forEach(id=>document.getElementById(id).value=''); document.getElementById('inp-network').value=''; document.getElementById('inp-slot').value=''; }
+function removeMember(i){ showConfirm(lang==='fr'?'Supprimer le membre':'Remove member','Remove '+S.members[i].name+'?',()=>{ S.members.splice(i,1); S.rotation=[]; S.rotationDrawn=false; save(); render(); toast('Removed'); }); }
 
-/* ── Slot dropdown ── */
-function refreshSlotDropdown() {
-  const sel = document.getElementById('inp-slot');
-  const taken = S.members.map(m => m.slot).filter(Boolean);
-  sel.innerHTML = '<option value="">No preference — assign randomly</option>';
-  for (let i = 1; i <= S.maxSlots; i++) {
-    if (!taken.includes(i)) {
-      const o = document.createElement('option');
-      o.value = i; o.textContent = 'Week ' + i;
-      sel.appendChild(o);
-    }
-  }
+/* ══ ROTATION ═══════════════════════════════════════════════════════ */
+function drawRotation(){
+  if(S.members.length<2){ toast('Need at least 2 members'); return; }
+  const withSlot=[...S.members].filter(m=>m.slot).sort((a,b)=>a.slot-b.slot);
+  const noSlot=shuffle([...S.members].filter(m=>!m.slot));
+  const order=[], ns=[...noSlot];
+  for(let i=1;i<=S.maxSlots;i++){ const p=withSlot.find(m=>m.slot===i); if(p) order.push(p.name); else if(ns.length) order.push(ns.shift().name); else order.push(null); }
+  S.rotation=order; S.rotationDrawn=true; save(); render(); toast(lang==='fr'?'Rotation tirée !':'Rotation drawn!');
 }
-
-/* ── Sign up ── */
-function signUp() {
-  const name    = document.getElementById('inp-name').value.trim();
-  const phone   = document.getElementById('inp-phone').value.trim();
-  const network = document.getElementById('inp-network').value;
-  const slotStr = document.getElementById('inp-slot').value;
-
-  if (!name)    { toast('Please enter your full name'); return; }
-  if (!phone)   { toast('Please enter your phone number'); return; }
-  if (!network) { toast('Please select your mobile money network'); return; }
-  if (S.members.length >= S.maxSlots) { toast('All slots are filled!'); return; }
-  if (S.members.find(m => m.name.toLowerCase() === name.toLowerCase())) {
-    toast('This member is already registered'); return;
-  }
-
-  let slot = slotStr ? parseInt(slotStr) : null;
-  if (slot && S.members.find(m => m.slot === slot)) {
-    toast('That slot is already taken. Please choose another.'); return;
-  }
-  if (!slot) {
-    const taken = S.members.map(m => m.slot).filter(Boolean);
-    const avail = [];
-    for (let i = 1; i <= S.maxSlots; i++) if (!taken.includes(i)) avail.push(i);
-    slot = avail.length ? avail[Math.floor(Math.random() * avail.length)] : null;
-  }
-
-  S.members.push({
-    name, phone, network, slot,
-    paid: [], joinedAt: new Date().toLocaleDateString('en-GB')
-  });
-  S.rotationDrawn = false;
-  save(); clearForm(); render();
-  toast(name + ' registered successfully!');
+function shuffleRotation(){ if(!S.rotationDrawn){ toast('Draw first'); return; } S.rotation=shuffle([...S.rotation]); save(); render(); toast('Shuffled!'); }
+function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+function shareWhatsApp(){
+  if(!S.rotationDrawn){ toast(lang==='fr'?'Tirez la rotation d\'abord':'Draw rotation first'); return; }
+  const week=currentWeek(), n=S.members.length, ben=S.rotation[week-1]||'—';
+  const paid=S.members.filter(m=>m.paid&&m.paid.includes(week)).length;
+  const pending=n-paid;
+  let msg = lang==='fr'
+    ? `🏦 *Famille Mbanji — Njangi Semaine ${week}*\n\n👤 Bénéficiaire : *${ben}*\n💰 Cagnotte : *${fmt(n*S.amount)} FCFA*\n✅ Payé : ${paid} membre(s)\n⏳ En attente : ${pending} membre(s)\n\n_Cotisation : ${fmt(S.amount)} FCFA avant dimanche minuit_`
+    : `🏦 *Mbanji Family — Njangi Week ${week}*\n\n👤 Beneficiary: *${ben}*\n💰 Pot: *${fmt(n*S.amount)} FCFA*\n✅ Paid: ${paid} member(s)\n⏳ Pending: ${pending} member(s)\n\n_Contribution: ${fmt(S.amount)} FCFA due by Sunday midnight_`;
+  const url='https://wa.me/?text='+encodeURIComponent(msg);
+  window.open(url,'_blank');
 }
 
-function clearForm() {
-  ['inp-name','inp-phone'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('inp-network').value = '';
-  document.getElementById('inp-slot').value = '';
+/* ══ PAYMENTS ═══════════════════════════════════════════════════════ */
+function markPaid(idx){
+  const week=currentWeek(), m=S.members[idx];
+  if(!m.paid) m.paid=[];
+  if(m.paid.includes(week)){ toast(m.name+' already paid'); return; }
+  m.paid.push(week); save(); render(); toast('Paid: '+m.name);
+}
+function markAllPaid(){
+  const week=currentWeek();
+  S.members.forEach(m=>{ if(!m.paid) m.paid=[]; if(!m.paid.includes(week)) m.paid.push(week); });
+  save(); render(); toast('All marked paid');
+}
+function addPenalty(idx){
+  const week=currentWeek(), m=S.members[idx];
+  if(!S.penalties) S.penalties=[];
+  S.penalties.push({member:m.name,week,amount:500,date:new Date().toLocaleDateString(lang==='fr'?'fr-FR':'en-GB')});
+  save(); render(); toast('Penalty logged for '+m.name);
 }
 
-/* ── Remove member ── */
-function removeMember(i) {
-  showConfirm(
-    'Remove member',
-    'Remove ' + S.members[i].name + ' from the njangi? This cannot be undone.',
-    () => {
-      S.members.splice(i, 1);
-      S.rotation = []; S.rotationDrawn = false;
-      save(); render(); toast('Member removed');
-    }
-  );
+/* ══ TROUBLE BANK ════════════════════════════════════════════════════ */
+function tbSignUp(){
+  const name=document.getElementById('tb-inp-name').value.trim();
+  const phone=document.getElementById('tb-inp-phone').value.trim();
+  const network=document.getElementById('tb-inp-network').value;
+  const type=document.getElementById('tb-inp-type').value;
+  if(!name||!phone||!network){ toast('Fill all fields'); return; }
+  if(!S.tbMembers) S.tbMembers=[];
+  if(S.tbMembers.find(m=>m.name.toLowerCase()===name.toLowerCase())){ toast('Already enrolled'); return; }
+  S.tbMembers.push({name,phone,network,type,monthlyPaid:[],joinedAt:new Date().toLocaleDateString(lang==='fr'?'fr-FR':'en-GB')});
+  save(); tbClearForm(); render(); toast(name+(lang==='fr'?' inscrit(e) !':' enrolled!'));
 }
-
-/* ── Draw rotation ── */
-function drawRotation() {
-  if (S.members.length < 2) { toast('Need at least 2 members to draw'); return; }
-  const withSlot = [...S.members].filter(m => m.slot).sort((a,b) => a.slot - b.slot);
-  const noSlot   = shuffle([...S.members].filter(m => !m.slot));
-  const order = [];
-  const noSlotCopy = [...noSlot];
-  for (let i = 1; i <= S.maxSlots; i++) {
-    const pref = withSlot.find(m => m.slot === i);
-    if (pref) order.push(pref.name);
-    else if (noSlotCopy.length) order.push(noSlotCopy.shift().name);
-    else order.push(null);
-  }
-  S.rotation = order; S.rotationDrawn = true;
-  save(); render(); toast('Rotation drawn successfully!');
+function tbClearForm(){ ['tb-inp-name','tb-inp-phone'].forEach(id=>document.getElementById(id).value=''); document.getElementById('tb-inp-network').value=''; }
+function tbMarkPaid(idx){
+  const month=currentMonthKey(), m=S.tbMembers[idx];
+  if(!m.monthlyPaid) m.monthlyPaid=[];
+  if(m.monthlyPaid.includes(month)){ toast('Already paid this month'); return; }
+  m.monthlyPaid.push(month); S.tbBalance=(S.tbBalance||0)+500;
+  save(); render(); toast('500 FCFA recorded for '+m.name);
 }
-
-function shuffleRotation() {
-  if (!S.rotationDrawn) { toast('Draw rotation first'); return; }
-  S.rotation = shuffle([...S.rotation]);
-  save(); render(); toast('Rotation shuffled!');
+function tbMarkAllPaid(){
+  const month=currentMonthKey(); let added=0;
+  (S.tbMembers||[]).forEach(m=>{ if(!m.monthlyPaid) m.monthlyPaid=[]; if(!m.monthlyPaid.includes(month)){ m.monthlyPaid.push(month); S.tbBalance=(S.tbBalance||0)+500; added++; } });
+  save(); render(); toast('Marked '+added+' paid');
 }
+function tbRemoveMember(idx){ showConfirm('Remove','Remove '+S.tbMembers[idx].name+'?',()=>{ S.tbMembers.splice(idx,1); save(); render(); toast('Removed'); }); }
+function recordTB(){ S.tbBalance=(S.tbBalance||0)+S.amount; S.tbCount=(S.tbCount||0)+1; save(); render(); toast('TB +'+fmt(S.amount)+' FCFA'); }
 
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
+/* ══ BIRTHDAYS ═══════════════════════════════════════════════════════ */
+function bdayRegister(){
+  const name=document.getElementById('bday-name').value.trim();
+  const dob=document.getElementById('bday-dob').value;
+  const parent=document.getElementById('bday-parent').value.trim();
+  const phone=document.getElementById('bday-phone').value.trim();
+  if(!name||!dob||!parent){ toast('Fill required fields'); return; }
+  const age=ageFromDob(dob);
+  if(age>15){ toast(lang==='fr'?'Enfant doit avoir 15 ans ou moins':'Child must be 15 or under'); return; }
+  if(!S.children) S.children=[];
+  S.children.push({name,dob,parent,phone,giftsGiven:[],registeredAt:new Date().toLocaleDateString()});
+  save(); bdayClear(); render(); toast(name+(lang==='fr'?' enregistré(e)':' registered'));
 }
-
-/* ── Mark paid ── */
-function markPaid(idx) {
-  const week = currentWeek();
-  const m = S.members[idx];
-  if (!m.paid) m.paid = [];
-  if (m.paid.includes(week)) { toast(m.name + ' already marked paid for week ' + week); return; }
-  m.paid.push(week);
-  save(); render(); toast('Payment recorded for ' + m.name);
+function bdayClear(){ ['bday-name','bday-parent','bday-phone'].forEach(id=>document.getElementById(id).value=''); document.getElementById('bday-dob').value=''; }
+let bdayGiftIdx=-1;
+function openGiftDialog(idx){
+  bdayGiftIdx=idx;
+  const child=S.children[idx];
+  const n=S.members.length;
+  const gross=n*500;
+  const net=gross-1000;
+  document.getElementById('bday-gift-info').textContent=(lang==='fr'?'Cadeau pour ':'Gift for ')+child.name+' ('+ageFromDob(child.dob)+' ans)';
+  document.getElementById('bday-gift-calc').innerHTML=
+    `<div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>${lang==='fr'?'Membres × 500 FCFA':'Members × 500 FCFA'}</span><span><strong>${fmt(gross)} FCFA</strong></span></div>`+
+    `<div style="display:flex;justify-content:space-between;margin-bottom:6px;color:var(--danger)"><span>${lang==='fr'?'Déduction caisse secours':'Trouble bank deduction'}</span><span>− 1,000 FCFA</span></div>`+
+    `<hr style="border:none;border-top:1px solid var(--border);margin:8px 0">`+
+    `<div style="display:flex;justify-content:space-between"><span style="font-weight:500">${lang==='fr'?'Net à verser':'Net gift'}</span><span style="font-size:18px;font-weight:600;color:var(--navy)">${fmt(net)} FCFA</span></div>`;
+  document.getElementById('bday-overlay').classList.add('show');
 }
-
-function markAllPaid() {
-  const week = currentWeek();
-  S.members.forEach(m => {
-    if (!m.paid) m.paid = [];
-    if (!m.paid.includes(week)) m.paid.push(week);
-  });
-  save(); render(); toast('All members marked paid for week ' + week);
+function closeBdayOverlay(){ document.getElementById('bday-overlay').classList.remove('show'); bdayGiftIdx=-1; }
+function confirmGift(){
+  if(bdayGiftIdx<0) return;
+  const child=S.children[bdayGiftIdx];
+  const n=S.members.length, net=n*500-1000;
+  S.tbBalance=(S.tbBalance||0)+1000;
+  if(!child.giftsGiven) child.giftsGiven=[];
+  child.giftsGiven.push({date:new Date().toLocaleDateString(),amount:net,age:ageFromDob(child.dob)});
+  save(); closeBdayOverlay(); render();
+  toast(lang==='fr'?'Cadeau versé : '+fmt(net)+' FCFA':'Gift disbursed: '+fmt(net)+' FCFA');
 }
+function removeChild(idx){ showConfirm('Remove child','Remove '+S.children[idx].name+'?',()=>{ S.children.splice(idx,1); save(); render(); toast('Removed'); }); }
 
-/* ── Trouble bank ── */
-function recordTB() {
-  S.tbBalance += S.amount; S.tbCount++;
-  save(); render(); toast('Trouble bank: +' + fmt(S.amount) + ' FCFA recorded');
+/* ══ SCHOLARSHIP ═════════════════════════════════════════════════════ */
+const SCH_PRIZES=[25000,15000,10000];
+function schSubmit(){
+  const name=document.getElementById('sch-name').value.trim();
+  const parent=document.getElementById('sch-parent').value.trim();
+  const cls=document.getElementById('sch-class').value.trim();
+  const avg=parseFloat(document.getElementById('sch-avg').value);
+  const school=document.getElementById('sch-school').value.trim();
+  const year=document.getElementById('sch-year-inp').value.trim();
+  if(!name||!parent||isNaN(avg)||avg<0||avg>100){ toast('Fill all fields correctly'); return; }
+  if(!S.scholarEntries) S.scholarEntries=[];
+  if(S.scholarEntries.find(e=>e.name.toLowerCase()===name.toLowerCase()&&e.year===year)){ toast('Already submitted for this year'); return; }
+  S.scholarEntries.push({name,parent,cls,avg,school,year:year||String(new Date().getFullYear()),awarded:false,submittedAt:new Date().toLocaleDateString()});
+  save(); schClear(); render(); toast(name+' submitted');
 }
+function schClear(){ ['sch-name','sch-parent','sch-class','sch-school','sch-year-inp'].forEach(id=>document.getElementById(id).value=''); document.getElementById('sch-avg').value=''; }
+function schAward(){
+  const sorted=[...S.scholarEntries].filter(e=>!e.awarded).sort((a,b)=>b.avg-a.avg);
+  const winners=sorted.slice(0,3);
+  if(!winners.length){ toast('No entries to award'); return; }
+  winners.forEach((w,i)=>{ const entry=S.scholarEntries.find(e=>e.name===w.name&&e.year===w.year); if(entry){ entry.awarded=true; entry.prize=SCH_PRIZES[i]||0; if(!S.scholarAwarded) S.scholarAwarded=[]; S.scholarAwarded.push({name:w.name,parent:w.parent,avg:w.avg,prize:SCH_PRIZES[i]||0,year:w.year,rank:i+1,awardedAt:new Date().toLocaleDateString()}); } });
+  save(); render(); toast(lang==='fr'?'Prix attribués !':'Prizes awarded!');
+}
+function removeSchEntry(idx){ showConfirm('Remove','Remove entry?',()=>{ S.scholarEntries.splice(idx,1); save(); render(); toast('Removed'); }); }
 
-/* ── Settings ── */
-function applySettings() {
-  S.amount     = parseInt(document.getElementById('cfg-amount').value) || 1000;
-  S.maxSlots   = parseInt(document.getElementById('cfg-slots').value)  || 12;
-  S.cycleStart = document.getElementById('cfg-start').value  || S.cycleStart;
-  S.cycleLabel = document.getElementById('cfg-label').value  || S.cycleLabel;
+/* ══ EVENTS ══════════════════════════════════════════════════════════ */
+const EV_DEFAULTS={death_member:2000,death_spouse:1500,death_parent:1000,birth:1000,marriage:1500,illness:1000,other:0};
+const EV_ICONS={death_member:'✝',death_spouse:'✝',death_parent:'✝',birth:'👶',marriage:'💍',illness:'🏥',other:'📋'};
+const EV_COLORS={death_member:'var(--danger-bg)',death_spouse:'var(--danger-bg)',death_parent:'var(--danger-bg)',birth:'var(--success-bg)',marriage:'var(--gold-pale)',illness:'var(--warn-bg)',other:'var(--surface-2)'};
+function evLog(){
+  const type=document.getElementById('ev-type').value;
+  const member=document.getElementById('ev-member').value.trim();
+  const date=document.getElementById('ev-date').value||new Date().toISOString().split('T')[0];
+  const amtInput=document.getElementById('ev-amount').value;
+  const notes=document.getElementById('ev-notes').value.trim();
+  if(!member){ toast('Enter member name'); return; }
+  const perMember=amtInput?parseInt(amtInput):(EV_DEFAULTS[type]||0);
+  const total=perMember*S.members.length;
+  if(!S.events) S.events=[];
+  S.events.unshift({type,member,date,perMember,total,notes,collected:0,loggedAt:new Date().toLocaleDateString()});
+  save(); evClear(); render(); toast(lang==='fr'?'Événement enregistré':'Event logged');
+}
+function evClear(){ document.getElementById('ev-member').value=''; document.getElementById('ev-notes').value=''; document.getElementById('ev-amount').value=''; document.getElementById('ev-date').value=''; }
+function evCollect(idx){ S.events[idx].collected=(S.events[idx].collected||0)+S.events[idx].perMember; save(); render(); toast('Contribution recorded'); }
+function removeEvent(idx){ showConfirm('Remove event','Remove this event record?',()=>{ S.events.splice(idx,1); save(); render(); toast('Removed'); }); }
+
+/* ══ SETTINGS ════════════════════════════════════════════════════════ */
+function applySettings(){
+  S.amount=parseInt(document.getElementById('cfg-amount').value)||1000;
+  S.maxSlots=parseInt(document.getElementById('cfg-slots').value)||12;
+  S.cycleStart=document.getElementById('cfg-start').value||S.cycleStart;
+  S.cycleLabel=document.getElementById('cfg-label').value||S.cycleLabel;
   save(); render(); toast('Settings saved');
 }
+function exportData(){ const b=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='mbanji-'+new Date().toISOString().split('T')[0]+'.json'; a.click(); toast('Exported'); }
+function confirmReset(){ showConfirm(lang==='fr'?'Réinitialiser':'Reset all','Delete all data? This cannot be undone.',()=>{ S=JSON.parse(JSON.stringify(DEFAULT)); S.cycleStart=new Date().toISOString().split('T')[0]; save(); render(); toast('Reset complete'); }); }
 
-/* ── Export ── */
-function exportData() {
-  const blob = new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'mbanji-njangi-' + new Date().toISOString().split('T')[0] + '.json';
-  a.click();
-  toast('Data exported');
+/* ══ DIALOG ══════════════════════════════════════════════════════════ */
+function showConfirm(title,msg,cb){ document.getElementById('dlg-title').textContent=title; document.getElementById('dlg-msg').textContent=msg; document.getElementById('dlg-confirm').onclick=()=>{ closeDialog(); cb(); }; document.getElementById('overlay').classList.add('show'); }
+function closeDialog(){ document.getElementById('overlay').classList.remove('show'); }
+
+/* ══ REPORT ══════════════════════════════════════════════════════════ */
+function buildReport(){
+  const week=currentWeek(), n=S.members.length;
+  const paidN=S.members.filter(m=>m.paid&&m.paid.includes(week)).length;
+  const month=currentMonthKey();
+  const tbPaid=(S.tbMembers||[]).filter(m=>m.monthlyPaid&&m.monthlyPaid.includes(month)).length;
+  const penTotal=(S.penalties||[]).reduce((s,p)=>s+p.amount,0);
+  const evTotal=(S.events||[]).reduce((s,e)=>s+e.total,0);
+  const evCollected=(S.events||[]).reduce((s,e)=>s+(e.collected||0),0);
+  const html=`
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--navy)">${t('h_title')}</div>
+      <div style="font-size:14px;color:var(--text-mid)">${t('monthly_report')} — ${monthLabel()}</div>
+    </div>
+    <div class="metrics metrics-4" style="margin-bottom:1.5rem">
+      <div class="metric"><div class="metric-label">${t('m_signed')}</div><div class="metric-val">${n}</div></div>
+      <div class="metric"><div class="metric-label">${t('paid_week')} (W${week})</div><div class="metric-val">${paidN}/${n}</div></div>
+      <div class="metric"><div class="metric-label">${t('tb_balance')}</div><div class="metric-val">${fmt(S.tbBalance)}</div><div class="metric-unit">FCFA</div></div>
+      <div class="metric"><div class="metric-label">${t('monthly_contrib')}</div><div class="metric-val">${tbPaid}/${(S.tbMembers||[]).length}</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+      <div class="card" style="margin:0">
+        <div class="section-label">${t('penalty_log')}</div>
+        <div style="font-size:22px;font-weight:600;color:var(--danger)">${fmt(penTotal)} FCFA</div>
+        <div style="font-size:12px;color:var(--text-light)">${(S.penalties||[]).length} ${lang==='fr'?'pénalités':'penalties'}</div>
+      </div>
+      <div class="card" style="margin:0">
+        <div class="section-label">${t('events_total')}</div>
+        <div style="font-size:22px;font-weight:600;color:var(--navy)">${(S.events||[]).length}</div>
+        <div style="font-size:12px;color:var(--text-light)">${fmt(evCollected)} / ${fmt(evTotal)} FCFA ${lang==='fr'?'collecté':'collected'}</div>
+      </div>
+    </div>
+    <div class="section-label">${t('rotation_title')} — ${lang==='fr'?'Semaine':'Week'} ${week}</div>
+    ${S.rotationDrawn && S.rotation[week-1]
+      ? `<div class="info-box">${lang==='fr'?'Bénéficiaire':'Beneficiary'}: <strong>${S.rotation[week-1]}</strong> · ${lang==='fr'?'Cagnotte':'Pot'}: <strong>${fmt(n*S.amount)} FCFA</strong></div>`
+      : `<div class="warn-box">${lang==='fr'?'Rotation non tirée':'Rotation not drawn yet'}</div>`}
+    <div class="section-label">${lang==='fr'?'Statut des paiements':'Payment status'}</div>
+    <table class="data"><thead><tr><th>${lang==='fr'?'Membre':'Member'}</th><th>${lang==='fr'?'Réseau':'Network'}</th><th>${lang==='fr'?'Semaine':'Week'} ${week}</th><th>${lang==='fr'?'Caisse':'TB'} ${monthLabel().split(' ')[0]}</th></tr></thead><tbody>
+    ${S.members.map(m=>{
+      const njPaid=m.paid&&m.paid.includes(week);
+      const tbM=S.tbMembers&&S.tbMembers.find(t=>t.name.toLowerCase()===m.name.toLowerCase());
+      const tbPaidM=tbM&&tbM.monthlyPaid&&tbM.monthlyPaid.includes(month);
+      return `<tr><td>${m.name}</td><td>${m.network}</td>
+        <td>${njPaid?'<span class="badge badge-green">'+(lang==='fr'?'Payé':'Paid')+'</span>':'<span class="badge badge-red">'+(lang==='fr'?'En attente':'Pending')+'</span>'}</td>
+        <td>${tbPaidM?'<span class="badge badge-green">'+(lang==='fr'?'Payé':'Paid')+'</span>':'<span class="badge badge-gray">—</span>'}</td></tr>`;
+    }).join('')}
+    </tbody></table>`;
+  document.getElementById('report-content').innerHTML=html;
+}
+function shareReport(){
+  const week=currentWeek(), n=S.members.length;
+  const paidN=S.members.filter(m=>m.paid&&m.paid.includes(week)).length;
+  let msg = lang==='fr'
+    ? `📊 *Rapport Famille Mbanji — ${monthLabel()}*\n\n👥 Membres : ${n}\n💰 Caisse de secours : ${fmt(S.tbBalance)} FCFA\n✅ Njangi S${week} payé : ${paidN}/${n}\n📅 Cotisants caisse ce mois : ${(S.tbMembers||[]).filter(m=>m.monthlyPaid&&m.monthlyPaid.includes(currentMonthKey())).length}/${(S.tbMembers||[]).length}`
+    : `📊 *Mbanji Family Report — ${monthLabel()}*\n\n👥 Members: ${n}\n💰 Trouble bank balance: ${fmt(S.tbBalance)} FCFA\n✅ Njangi W${week} paid: ${paidN}/${n}\n📅 TB contributors this month: ${(S.tbMembers||[]).filter(m=>m.monthlyPaid&&m.monthlyPaid.includes(currentMonthKey())).length}/${(S.tbMembers||[]).length}`;
+  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
 }
 
-/* ── Reset ── */
-function confirmReset() {
-  showConfirm(
-    'Reset all data',
-    'This will permanently delete all members, payments, and rotation data. This cannot be undone.',
-    () => {
-      S = JSON.parse(JSON.stringify(DEFAULT));
-      S.cycleStart = new Date().toISOString().split('T')[0];
-      save(); render(); toast('All data has been reset');
-    }
-  );
-}
+/* ══ RENDER ══════════════════════════════════════════════════════════ */
+function render(){
+  const n=S.members.length, week=currentWeek(), pct=S.maxSlots>0?Math.round((n/S.maxSlots)*100):0;
+  document.getElementById('cycleLabel').textContent=S.cycleLabel||('Cycle 1 · '+new Date().getFullYear());
 
-/* ── Dialog ── */
-function showConfirm(title, msg, onConfirm) {
-  document.getElementById('dlg-title').textContent = title;
-  document.getElementById('dlg-msg').textContent   = msg;
-  document.getElementById('dlg-confirm').onclick   = () => { closeDialog(); onConfirm(); };
-  document.getElementById('overlay').classList.add('show');
-}
-function closeDialog() {
-  document.getElementById('overlay').classList.remove('show');
-}
-
-/* ── Render ── */
-function render() {
-  const n    = S.members.length;
-  const week = currentWeek();
-  const pot  = n * S.amount;
-  const pct  = S.maxSlots > 0 ? Math.round((n / S.maxSlots) * 100) : 0;
-
-  /* header */
-  document.getElementById('cycleLabel').textContent = S.cycleLabel || ('Cycle 1 · ' + new Date().getFullYear());
-
-  /* signup metrics */
-  document.getElementById('m-signed').textContent = n;
-  document.getElementById('m-slots').textContent  = Math.max(0, S.maxSlots - n);
-  document.getElementById('m-pot').textContent    = fmt(pot);
-  document.getElementById('prog-badge').textContent = n + ' / ' + S.maxSlots;
-  document.getElementById('prog-fill').style.width  = pct + '%';
-  document.getElementById('prog-left').textContent  = n >= S.maxSlots ? 'All slots filled — ready to draw!' : (S.maxSlots - n) + ' slot(s) remaining';
-  document.getElementById('prog-pct').textContent   = pct + '%';
-
+  /* signup */
+  document.getElementById('m-signed').textContent=n;
+  document.getElementById('m-slots').textContent=Math.max(0,S.maxSlots-n);
+  document.getElementById('m-pot').textContent=fmt(n*S.amount);
+  document.getElementById('prog-badge').textContent=n+' / '+S.maxSlots;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-left').textContent=n>=S.maxSlots?t('all_filled'):(S.maxSlots-n)+' '+t('slots_remaining');
+  document.getElementById('prog-pct').textContent=pct+'%';
   refreshSlotDropdown();
 
   /* rotation */
-  const rl = document.getElementById('rotation-list');
-  if (!S.rotationDrawn || !S.rotation.length) {
-    rl.innerHTML = n > 0
-      ? `<div class="info-box">${n} member${n!==1?'s':''} registered. Click "Draw rotation" to assign weekly order.</div><div class="empty"><div class="empty-icon">↻</div><p>Rotation not yet drawn.</p></div>`
-      : `<div class="empty"><div class="empty-icon">👥</div><p>No members signed up yet.</p></div>`;
+  const rl=document.getElementById('rotation-list');
+  if(!S.rotationDrawn||!S.rotation.length){
+    rl.innerHTML=n>0?`<div class="info-box">${n} ${t('m_members')}. ${t('btn_draw')}.</div><div class="empty"><p>↻</p></div>`:`<div class="empty"><p>—</p></div>`;
   } else {
-    rl.innerHTML = S.rotation.map((name, i) => {
-      const wk = i + 1;
-      const isCur  = wk === week;
-      const isPast = wk < week;
-      const mi     = S.members.findIndex(m => m.name === name);
-      const paid   = mi >= 0 && S.members[mi].paid && S.members[mi].paid.includes(wk);
-      let badge = '';
-      if (!name)         badge = '<span class="badge badge-gray">Open</span>';
-      else if (isCur)    badge = '<span class="badge badge-gold">Current beneficiary</span>';
-      else if (isPast && paid)  badge = '<span class="badge badge-green">Completed</span>';
-      else if (isPast && !paid) badge = '<span class="badge badge-red">Missed</span>';
-      else               badge = '<span class="badge badge-gray">Upcoming</span>';
-      const numClass = !name ? 'open' : isCur ? 'current' : '';
-      return `<div class="row">
-        <div class="slot-num ${numClass}">${wk}</div>
-        <div style="flex:1;min-width:0">
-          <div style="font-weight:500;font-size:14px">${name || 'Open slot'}</div>
-          <div style="font-size:12px;color:var(--text-light)">Pot: ${name ? fmt(n * S.amount) + ' FCFA' : '—'}</div>
-        </div>
-        <div>${badge}</div>
-      </div>`;
+    rl.innerHTML=S.rotation.map((name,i)=>{
+      const wk=i+1,isCur=wk===week,isPast=wk<week;
+      const mi=S.members.findIndex(m=>m.name===name);
+      const paid=mi>=0&&S.members[mi].paid&&S.members[mi].paid.includes(wk);
+      let badge=!name?`<span class="badge badge-gray">${lang==='fr'?'Libre':'Open'}</span>`:isCur?`<span class="badge badge-gold">${lang==='fr'?'Bénéficiaire':'Beneficiary'}</span>`:isPast&&paid?`<span class="badge badge-green">${lang==='fr'?'Complété':'Done'}</span>`:isPast?`<span class="badge badge-red">${lang==='fr'?'Manqué':'Missed'}</span>`:`<span class="badge badge-gray">${lang==='fr'?'À venir':'Upcoming'}</span>`;
+      return `<div class="row"><div class="slot-num ${!name?'open':isCur?'current':''}">${wk}</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">${name||(lang==='fr'?'Place libre':'Open slot')}</div><div style="font-size:12px;color:var(--text-light)">${name?fmt(n*S.amount)+' FCFA':'—'}</div></div><div>${badge}</div></div>`;
     }).join('');
   }
 
   /* members */
-  document.getElementById('members-count').textContent = n + ' member' + (n !== 1 ? 's' : '');
-  const ml = document.getElementById('members-list');
-  ml.innerHTML = !n
-    ? '<div class="empty"><p>No members yet.</p></div>'
-    : S.members.map((m, i) => `
-        <div class="row">
-          <div class="avatar avatar-sm">${initials(m.name)}</div>
-          <div style="flex:1;min-width:0">
-            <div style="font-weight:500;font-size:14px">${m.name}</div>
-            <div style="font-size:12px;color:var(--text-light)">${m.network} · ${m.phone} · joined ${m.joinedAt}</div>
-          </div>
-          <div class="row-actions">
-            ${m.slot ? '<span class="badge badge-blue">Week ' + m.slot + '</span>' : '<span class="badge badge-gray">No slot</span>'}
-            <button class="btn btn-danger btn-sm" onclick="removeMember(${i})">Remove</button>
-          </div>
-        </div>`).join('');
+  document.getElementById('members-count').textContent=n+' '+t('m_members');
+  const ml=document.getElementById('members-list');
+  ml.innerHTML=!n?`<div class="empty"><p>—</p></div>`:S.members.map((m,i)=>{
+    const paidMonths=(S.tbMembers&&S.tbMembers.find(t=>t.name.toLowerCase()===m.name.toLowerCase()));
+    const histCount=m.paid?m.paid.length:0;
+    return `<div class="row"><div class="avatar avatar-sm">${initials(m.name)}</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">${m.name}</div><div style="font-size:12px;color:var(--text-light)">${m.network} · ${m.phone} · ${histCount} weeks paid</div></div><div class="row-actions">${m.slot?'<span class="badge badge-blue">'+(lang==='fr'?'Sem.':'Wk ')+m.slot+'</span>':''}<button class="btn btn-danger btn-sm" onclick="removeMember(${i})">${lang==='fr'?'Suppr.':'Remove'}</button></div></div>`;
+  }).join('');
 
   /* payments */
-  const paidCount = S.members.filter(m => m.paid && m.paid.includes(week)).length;
-  document.getElementById('pay-week').textContent  = week;
-  document.getElementById('pay-paid').textContent  = paidCount;
-  document.getElementById('pay-tb').textContent    = fmt(S.tbBalance);
+  const paidCount=S.members.filter(m=>m.paid&&m.paid.includes(week)).length;
+  const penTotal=(S.penalties||[]).filter(p=>p.week===week).reduce((s,p)=>s+p.amount,0);
+  document.getElementById('pay-week').textContent=week;
+  document.getElementById('pay-paid').textContent=paidCount;
+  document.getElementById('pay-penalties').textContent=fmt(penTotal);
 
-  const benName = S.rotation[week - 1] || null;
-  const benEl   = document.getElementById('beneficiary-card');
-  if (!S.rotationDrawn || !benName) {
-    benEl.innerHTML = '<div class="empty"><p>Rotation not drawn yet.</p></div>';
-  } else {
-    const bm = S.members.find(m => m.name === benName);
-    const tbPaid = S.members.findIndex(m => m.name === benName);
-    benEl.innerHTML = `
-      <div class="row" style="border:none;padding:0">
-        <div class="avatar">${initials(benName)}</div>
-        <div style="flex:1">
-          <div style="font-weight:500;font-size:15px">${benName}</div>
-          <div style="font-size:13px;color:var(--text-light)">${bm ? bm.network + ' · ' + bm.phone : ''}</div>
-        </div>
-        <div>
-          <div style="font-size:13px;color:var(--text-mid);margin-bottom:4px">Receives</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--navy)">${fmt(n * S.amount)} FCFA</div>
-        </div>
-      </div>
-      <hr class="divider">
-      <div style="font-size:13px;color:var(--text-mid)">This member must contribute <strong>1,000 FCFA</strong> to the trouble bank upon receiving the pot.</div>`;
-  }
+  const benName=S.rotation[week-1]||null;
+  const benEl=document.getElementById('beneficiary-card');
+  if(!S.rotationDrawn||!benName) benEl.innerHTML=`<div class="empty"><p>${t('btn_draw')}</p></div>`;
+  else { const bm=S.members.find(m=>m.name===benName); benEl.innerHTML=`<div class="row" style="border:none;padding:0"><div class="avatar">${initials(benName)}</div><div style="flex:1"><div style="font-weight:500;font-size:15px">${benName}</div><div style="font-size:12px;color:var(--text-light)">${bm?bm.network+' · '+bm.phone:''}</div></div><div style="text-align:right"><div style="font-size:12px;color:var(--text-mid);margin-bottom:2px">${lang==='fr'?'Reçoit':'Receives'}</div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--navy)">${fmt(n*S.amount)} FCFA</div></div></div><hr class="divider"><div style="font-size:13px;color:var(--text-mid)">${lang==='fr'?'Ce membre doit verser':'This member must contribute'} <strong>1,000 FCFA</strong> ${lang==='fr'?'à la caisse de secours.':'to the trouble bank.'}</div>`; }
 
-  const pl = document.getElementById('payment-list');
-  pl.innerHTML = !n
-    ? '<div class="empty"><p>No members yet.</p></div>'
-    : S.members.map((m, i) => {
-        const paid = m.paid && m.paid.includes(week);
-        return `<div class="row">
-          <div class="avatar avatar-sm">${initials(m.name)}</div>
-          <div style="flex:1;min-width:0">
-            <div style="font-weight:500;font-size:14px">${m.name}</div>
-            <div style="font-size:12px;color:var(--text-light)">Week ${week} · ${fmt(S.amount)} FCFA</div>
-          </div>
-          <div class="row-actions">
-            ${paid ? '<span class="badge badge-green">Paid</span>' : '<span class="badge badge-red">Pending</span>'}
-            ${!paid ? `<button class="btn btn-sm" onclick="markPaid(${i})">Mark paid</button>` : ''}
-          </div>
-        </div>`;
-      }).join('');
+  const pl=document.getElementById('payment-list');
+  pl.innerHTML=!n?`<div class="empty"><p>—</p></div>`:S.members.map((m,i)=>{
+    const paid=m.paid&&m.paid.includes(week);
+    const hasPenalty=(S.penalties||[]).find(p=>p.member===m.name&&p.week===week);
+    return `<div class="row"><div class="avatar avatar-sm">${initials(m.name)}</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">${m.name}</div><div style="font-size:12px;color:var(--text-light)">${lang==='fr'?'Sem.':'Wk'} ${week} · ${fmt(S.amount)} FCFA${hasPenalty?' · <span style="color:var(--danger)">+500 penalty</span>':''}</div></div><div class="row-actions">${paid?`<span class="badge badge-green">${lang==='fr'?'Payé':'Paid'}</span>`:`<span class="badge badge-red">${lang==='fr'?'En attente':'Pending'}</span>`}${!paid?`<button class="btn btn-sm" onclick="markPaid(${i})">${lang==='fr'?'Marquer payé':'Mark paid'}</button><button class="btn btn-warn btn-sm" onclick="addPenalty(${i})">+Penalty</button>`:''}</div></div>`;
+  }).join('');
+
+  const penList=document.getElementById('penalty-list');
+  penList.innerHTML=!(S.penalties&&S.penalties.length)?`<div class="empty"><p>${lang==='fr'?'Aucune pénalité':'No penalties logged'}</p></div>`:S.penalties.slice().reverse().map(p=>`<div class="row"><div style="width:30px;height:30px;border-radius:50%;background:var(--danger-bg);color:var(--danger);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">!</div><div style="flex:1"><div style="font-weight:500;font-size:14px">${p.member}</div><div style="font-size:12px;color:var(--text-light)">${lang==='fr'?'Sem.':'Week'} ${p.week} · ${p.date}</div></div><span class="badge badge-red">+${fmt(p.amount)} FCFA</span></div>`).join('');
+
+  /* trouble bank */
+  const tbN=(S.tbMembers||[]).length, month=currentMonthKey();
+  const tbPaidN=(S.tbMembers||[]).filter(m=>m.monthlyPaid&&m.monthlyPaid.includes(month)).length;
+  document.getElementById('tb-enrolled').textContent=tbN;
+  document.getElementById('tb-bal-display').textContent=fmt(S.tbBalance);
+  document.getElementById('tb-month-paid').textContent=tbPaidN;
+  document.getElementById('tb-signup-badge').textContent=tbN;
+  document.getElementById('tb-cur-month').textContent=monthLabel();
+  const tbPl=document.getElementById('tb-payment-list');
+  tbPl.innerHTML=!tbN?`<div class="empty"><p>—</p></div>`:(S.tbMembers||[]).map((m,i)=>{
+    const paid=m.monthlyPaid&&m.monthlyPaid.includes(month);
+    return `<div class="row"><div class="avatar avatar-sm">${initials(m.name)}</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">${m.name}</div><div style="font-size:12px;color:var(--text-light)">${m.network} · 500 FCFA · ${(m.monthlyPaid||[]).length} months total</div></div><div class="row-actions">${paid?`<span class="badge badge-green">${lang==='fr'?'Payé':'Paid'}</span>`:`<span class="badge badge-red">${lang==='fr'?'En attente':'Pending'}</span>`}${!paid?`<button class="btn btn-sm" onclick="tbMarkPaid(${i})">${lang==='fr'?'Marquer payé':'Mark paid'}</button>`:''}<button class="btn btn-danger btn-sm" onclick="tbRemoveMember(${i})">✕</button></div></div>`;
+  }).join('');
+
+  /* birthdays */
+  const children=(S.children||[]);
+  const upcoming=children.filter(c=>daysToBirthday(c.dob)<=30).length;
+  const giftsTotal=children.reduce((s,c)=>(c.giftsGiven||[]).reduce((ss,g)=>ss+g.amount,0)+s,0);
+  document.getElementById('bday-count').textContent=children.length;
+  document.getElementById('bday-upcoming').textContent=upcoming;
+  document.getElementById('bday-fund').textContent=fmt(giftsTotal);
+  const bl=document.getElementById('bday-list');
+  bl.innerHTML=!children.length?`<div class="empty"><p>—</p></div>`:children.map((c,i)=>{
+    const age=ageFromDob(c.dob), dtb=daysToBirthday(c.dob), soon=dtb<=30;
+    return `<div class="row"><div class="avatar avatar-sm" style="${soon?'background:var(--gold);color:var(--navy)':''}">${initials(c.name)}</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">${c.name} <span style="font-size:12px;color:var(--text-light)">(${age} yrs)</span></div><div style="font-size:12px;color:var(--text-light)">${lang==='fr'?'Parent':'Parent'}: ${c.parent} · ${dtb} ${lang==='fr'?'jours':'days'}</div></div><div class="row-actions">${soon?`<span class="badge badge-gold">${lang==='fr'?'Bientôt':'Soon!'}</span>`:''}<button class="btn btn-gold btn-sm" onclick="openGiftDialog(${i})">🎁</button><button class="btn btn-danger btn-sm" onclick="removeChild(${i})">✕</button></div></div>`;
+  }).join('');
+
+  /* scholarship */
+  const entries=(S.scholarEntries||[]);
+  const awarded=(S.scholarAwarded||[]).reduce((s,a)=>s+a.prize,0);
+  document.getElementById('sch-entries').textContent=entries.length;
+  document.getElementById('sch-awarded').textContent=fmt(awarded);
+  document.getElementById('sch-year').textContent=entries.length?entries[entries.length-1].year:'—';
+  const sorted=[...entries].sort((a,b)=>b.avg-a.avg);
+  const rankEl=document.getElementById('sch-rankings');
+  rankEl.innerHTML=!sorted.length?`<div class="empty"><p>—</p></div>`:sorted.slice(0,3).map((e,i)=>{
+    const prz=SCH_PRIZES[i]||0;
+    return `<div class="row"><div class="medal medal-${i+1}">${i+1}</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">${e.name}</div><div style="font-size:12px;color:var(--text-light)">${e.avg.toFixed(1)}% · ${e.cls} · ${e.school}</div></div><div class="row-actions"><span class="badge badge-gold">${fmt(prz)} FCFA</span>${e.awarded?`<span class="badge badge-green">${lang==='fr'?'Attribué':'Awarded'}</span>`:''}</div></div>`;
+  }).join('');
+  const entEl=document.getElementById('sch-entries-list');
+  entEl.innerHTML=!entries.length?`<div class="empty"><p>—</p></div>`:entries.map((e,i)=>`<div class="row"><div class="avatar avatar-sm">${initials(e.name)}</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">${e.name}</div><div style="font-size:12px;color:var(--text-light)">${e.avg.toFixed(1)}% · ${e.cls} · ${e.year}</div></div><div class="row-actions">${e.awarded?`<span class="badge badge-gold">${fmt(e.prize)} FCFA</span>`:''}<button class="btn btn-danger btn-sm" onclick="removeSchEntry(${i})">✕</button></div></div>`).join('');
+
+  /* events */
+  const evs=(S.events||[]);
+  const evTotal=evs.reduce((s,e)=>s+e.total,0);
+  const evCollected=evs.reduce((s,e)=>s+(e.collected||0),0);
+  const evPending=evTotal-evCollected;
+  document.getElementById('ev-total').textContent=evs.length;
+  document.getElementById('ev-collected').textContent=fmt(evCollected);
+  document.getElementById('ev-pending').textContent=fmt(evPending);
+  const evEl=document.getElementById('events-list');
+  evEl.innerHTML=!evs.length?`<div class="empty"><p>—</p></div>`:evs.map((e,i)=>{
+    const remaining=e.total-(e.collected||0);
+    return `<div class="row"><div class="event-icon" style="background:${EV_COLORS[e.type]}">${EV_ICONS[e.type]||'📋'}</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">${e.member}</div><div style="font-size:12px;color:var(--text-light)">${t('ev_'+e.type)||e.type} · ${e.date} · ${fmt(e.perMember)} FCFA/${lang==='fr'?'membre':'member'}</div>${e.notes?`<div style="font-size:12px;color:var(--text-light);font-style:italic">${e.notes}</div>`:''}</div><div class="row-actions" style="flex-direction:column;align-items:flex-end;gap:4px"><span class="badge ${remaining>0?'badge-warn':'badge-green'}">${fmt(e.collected||0)} / ${fmt(e.total)} FCFA</span>${remaining>0?`<button class="btn btn-sm btn-success" onclick="evCollect(${i})">+${fmt(e.perMember)}</button>`:''}<button class="btn btn-danger btn-sm" onclick="removeEvent(${i})">✕</button></div></div>`;
+  }).join('');
 
   /* admin */
-  document.getElementById('cfg-amount').value  = S.amount;
-  document.getElementById('cfg-slots').value   = S.maxSlots;
-  document.getElementById('cfg-start').value   = S.cycleStart;
-  document.getElementById('cfg-label').value   = S.cycleLabel;
-  document.getElementById('tb-balance').textContent = fmt(S.tbBalance);
-  document.getElementById('tb-count').textContent   = S.tbCount;
-  document.getElementById('tb-next').textContent    = fmt(S.amount);
+  document.getElementById('cfg-amount').value=S.amount;
+  document.getElementById('cfg-slots').value=S.maxSlots;
+  document.getElementById('cfg-start').value=S.cycleStart;
+  document.getElementById('cfg-label').value=S.cycleLabel;
+  document.getElementById('tb-balance').textContent=fmt(S.tbBalance);
+  document.getElementById('tb-count').textContent=S.tbCount||0;
+  document.getElementById('tb-monthly-n').textContent=(S.tbMembers||[]).length;
+
+  /* report */
+  if(document.getElementById('page-report').classList.contains('active')) buildReport();
 }
 
+/* ══ INIT ════════════════════════════════════════════════════════════ */
 load();
+applyDark();
+applyLang();
+document.getElementById('ev-date').value=new Date().toISOString().split('T')[0];
 render();
 </script>
 </body>
